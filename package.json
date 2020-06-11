@@ -1,0 +1,106 @@
+{
+	"name": "thaw-interpreter",
+	"version": "0.0.0",
+	"description": "A Node.js interpreter for several programming languages. Written in TypeScript.",
+	"keywords": [
+		"interpreter",
+		"LISP",
+		"programming languages",
+		"TypeScript"
+	],
+	"private": false,
+	"homepage": "https://github.com/tom-weatherhead/thaw-interpreter#readme",
+	"repository": "github:tom-weatherhead/thaw-interpreter",
+	"bugs": {
+		"url": "https://github.com/tom-weatherhead/thaw-interpreter/issues"
+	},
+	"_browser": "",
+	"main": "lib/main.js",
+	"types": "lib/main.d.ts",
+	"files": [
+		"lib/**/*"
+	],
+	"bin": {
+		"intrp": "lib/cli.js"
+	},
+	"man": [],
+	"directories": {
+		"lib": "",
+		"_bin": "",
+		"man": "",
+		"doc": "",
+		"example": "",
+		"test": ""
+	},
+	"scripts": {
+		"all": "npm run rebuild-online && chmod +x lib/cli.js && npm pack && npm run deploy",
+		"allw": "rmdir /Q /S coverage & rmdir /Q /S lib & npm run lint & npm run prettiercheck & npm run build & npm test & npm pack & move /Y thaw-interpreter-*.tgz C:\\git\\npm-packages\\",
+		"travis": "npm run rebuild-online",
+		"rebuild-offline": "npm run clean-offline && npm run build-and-test",
+		"clean-offline": "rm -rf coverage && rm -rf lib",
+		"rebuild-online": "npm run clean-online && npm i && npm run build-and-test",
+		"clean-online": "rm -rf coverage && rm -rf lib && rm -rf node_modules && rm -f package-lock.json",
+		"build-and-test": "npm run prettiercheck && npm run lint && npm run build && npm test",
+		"test": "jest --config jestconfig.json",
+		"build": "tsc",
+		"deploy": "eval mv $npm_package_name-$npm_package_version.tgz $(echo $npm_package_config_deploy_target_dir)/",
+		"prettiercheck": "prettier --check \"src/**/*.ts\" \"test/**/*.ts\"",
+		"format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+		"lint": "tslint -p tsconfig.json",
+		"prepare": "npm run build",
+		"prepublishOnly": "npm test && npm run lint",
+		"preversion": "npm run lint",
+		"version": "npm run format && git add -A src",
+		"postversion": "git push && git push --tags",
+		"loc": "git ls-files -z *.ts | xargs -0 wc -l",
+		"cli": "node lib/cli.js",
+		"start": "npm run all",
+		"f": "npm run format && npm run all"
+	},
+	"config": {
+		"deploy_target_dir": "$NPM_PKG_DIR"
+	},
+	"publishConfig": {},
+	"dependencies": {
+		"thaw-common-utilities.ts": "^0.0.1",
+		"thaw-grammar": "file:thaw-grammar.tgz",
+		"thaw-lexical-analyzer": "file:thaw-lexical-analyzer.tgz",
+		"thaw-parser": "file:thaw-parser.tgz",
+		"thaw-repl": "^0.0.0"
+	},
+	"devDependencies": {
+		"@types/jest": "^26.0.0",
+		"@types/node": "^14.0.13",
+		"codecov": "^3.7.0",
+		"jest": "^26.0.1",
+		"prettier": "^2.0.5",
+		"ts-jest": "^26.1.0",
+		"tslint": "^6.1.2",
+		"tslint-config-prettier": "^1.18.0",
+		"typescript": "^3.9.5"
+	},
+	"peerDependencies": {},
+	"// bundledDependencies": "... is an array of package names",
+	"bundledDependencies": [],
+	"optionalDependencies": {},
+	"engines": {
+		"node": ">= 8"
+	},
+	"os": [
+		"darwin",
+		"linux",
+		"win32"
+	],
+	"cpu": [
+		"ia32",
+		"x64"
+	],
+	"contributors": [
+		"Buddy Guy <deadbeef@decafbad.gov>",
+		"Deprecated <deadc0de@obso1337.org>",
+		"Autonomous Weapons Systems Unlimited <killer@robots.com>",
+		"Sgt. Pepper <shoot1st@thinkl8r.mil>"
+	],
+	"author": "Tom Weatherhead <thaw@2hrd4u.org> (https://github.com/tom-weatherhead)",
+	"license": "MIT"
+}

@@ -1,0 +1,9 @@
+* text=auto eol=lf
+*.bat		text eol=crlf
+*.ps1		text eol=crlf
+*.vcproj	text eol=crlf
+*.bmp		-diff -text
+*.ico		-diff -text
+*.jpg		-diff -text
+*.pdf		-diff -text
+*.png		-diff -text
