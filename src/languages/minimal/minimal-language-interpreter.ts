@@ -9,7 +9,7 @@ import { IExpression, MinimalLanguageGlobalInfo } from 'thaw-grammar';
 import { InterpreterBase } from '../../common/interpreter-base';
 
 export class MinimalLanguageInterpreter extends InterpreterBase<number> {
-	constructor(quiet: boolean = false) {
+	constructor(quiet = false) {
 		super(
 			LanguageSelector.MinimalLanguage,
 			new MinimalLanguageGlobalInfo(),

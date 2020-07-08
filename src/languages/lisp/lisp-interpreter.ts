@@ -9,7 +9,7 @@ import { IExpression, ISExpression, LISPGlobalInfo } from 'thaw-grammar';
 import { InterpreterBase } from '../../common/interpreter-base';
 
 export class LISPInterpreter extends InterpreterBase<ISExpression> {
-	constructor(quiet: boolean = false) {
+	constructor(quiet = false) {
 		super(LanguageSelector.LISP, new LISPGlobalInfo(), quiet);
 	}
 

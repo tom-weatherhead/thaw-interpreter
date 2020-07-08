@@ -9,7 +9,7 @@ import { IExpression, ISExpression, SchemeGlobalInfo } from 'thaw-grammar';
 import { InterpreterBase } from '../../common/interpreter-base';
 
 export class SchemeInterpreter extends InterpreterBase<ISExpression> {
-	constructor(quiet: boolean = false) {
+	constructor(quiet = false) {
 		super(LanguageSelector.Scheme, new SchemeGlobalInfo(), quiet);
 	}
 

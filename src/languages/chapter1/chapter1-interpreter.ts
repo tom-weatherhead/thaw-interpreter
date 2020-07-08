@@ -9,7 +9,7 @@ import { Chapter1GlobalInfo, IExpression } from 'thaw-grammar';
 import { InterpreterBase } from '../../common/interpreter-base';
 
 export class Chapter1Interpreter extends InterpreterBase<number> {
-	constructor(quiet: boolean = false) {
+	constructor(quiet = false) {
 		super(LanguageSelector.Chapter1, new Chapter1GlobalInfo(), quiet);
 	}
 
