@@ -44,11 +44,7 @@
 // Symbol.terminalAtan2
 // Symbol.terminalThrow
 
-import {
-	createInterpreter,
-	IInterpreter,
-	LanguageSelector
-} from '../lib/main';
+import { createInterpreter, IInterpreter, LanguageSelector } from '..';
 
 const trueValueAsString = 'T';
 const falseValueAsString = '()';

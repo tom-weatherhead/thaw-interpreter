@@ -2,11 +2,7 @@
 
 'use strict';
 
-import {
-	createInterpreter,
-	IInterpreter,
-	LanguageSelector
-} from '../lib/main';
+import { createInterpreter, IInterpreter, LanguageSelector } from '..';
 
 let interpreter: IInterpreter;
 

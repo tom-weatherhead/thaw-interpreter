@@ -15,8 +15,8 @@ import { createParser, IParser, ParserSelector } from 'thaw-parser';
 
 import { IInterpreter } from './iinterpreter';
 
-export abstract class InterpreterBase<T>
-	implements IInterpreter /* , IInterpreterUnitTestInterface */ {
+export abstract class InterpreterBase<T> implements IInterpreter {
+	/* , IInterpreterUnitTestInterface */
 	protected readonly tokenizer: ITokenizer;
 	protected readonly grammar: IGrammar;
 	protected readonly parser: IParser;

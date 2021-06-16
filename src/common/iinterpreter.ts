@@ -10,8 +10,5 @@ export interface IInterpreter {
 	initialize(): void; // Restore the state of the interpreter to its newly-created state.
 
 	// Parameters in functions in interfaces cannot have initializers.
-	evaluateFromString(
-		inputString: string,
-		catchExceptions?: boolean
-	): string;
+	evaluateFromString(inputString: string, catchExceptions?: boolean): string;
 }

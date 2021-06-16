@@ -7,11 +7,7 @@
 
 'use strict';
 
-import {
-	createInterpreter,
-	IInterpreter,
-	LanguageSelector
-} from '../lib/main';
+import { createInterpreter, IInterpreter, LanguageSelector } from '..';
 
 const trueValueAsString = '1';
 const falseValueAsString = '0';

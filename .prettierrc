@@ -1,5 +1,9 @@
 {
-	"printWidth": 78,
+	"endOfLine": "lf",
+	"printWidth": 80,
+	"quoteProps": "consistent",
 	"singleQuote": true,
-	"trailingComma": "none"
+	"tabWidth": 4,
+	"trailingComma": "none",
+	"useTabs": true
 }
