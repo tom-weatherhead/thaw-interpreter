@@ -2,8 +2,6 @@
 
 // tom-weatherhead/thaw-interpreter/src/cli.ts
 
-'use strict';
-
 import { LanguageSelector } from 'thaw-lexical-analyzer';
 
 import { readEvaluatePrintLoop } from 'thaw-repl';
@@ -46,6 +44,11 @@ function driver() {
 
 		case 'lisp':
 			languageSelector = LanguageSelector.LISP;
+			break;
+
+		case 'prolog':
+			// languageSelector = LanguageSelector.Prolog; // Kamin's notation
+			languageSelector = LanguageSelector.Prolog2; // Standard
 			break;
 
 		case 'scheme':

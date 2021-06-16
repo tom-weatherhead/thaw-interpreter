@@ -1,7 +1,5 @@
 // tom-weatherhead/thaw-interpreter/src/common/interpreter-factory.ts
 
-'use strict';
-
 import { LanguageSelector } from 'thaw-lexical-analyzer';
 
 import { ArgumentException } from 'thaw-grammar';
@@ -10,6 +8,7 @@ import { Chapter1Interpreter } from '../languages/chapter1/chapter1-interpreter'
 import { LISPInterpreter } from '../languages/lisp/lisp-interpreter';
 import { MinimalLanguageInterpreter } from '../languages/minimal/minimal-language-interpreter';
 import { SchemeInterpreter } from '../languages/scheme/scheme-interpreter';
+import { PrologInterpreter } from '../languages/prolog/prolog-interpreter';
 
 import { IInterpreter } from './iinterpreter';
 
@@ -27,18 +26,19 @@ export function createInterpreter(ls: LanguageSelector): IInterpreter {
 		case LanguageSelector.LISP:
 			return new LISPInterpreter();
 
-		// LanguageSelector.APL,
+		case LanguageSelector.Prolog2:
+			return new PrologInterpreter();
 
 		case LanguageSelector.Scheme:
 			return new SchemeInterpreter();
 
-		// LanguageSelector.SASL,
+		// LanguageSelector.APL,
 		// LanguageSelector.CLU,
-		// LanguageSelector.Smalltalk,
-		// LanguageSelector.Prolog,
-		// LanguageSelector.Prolog2,    // "Real" Prolog.
 		// LanguageSelector.Inference,
-		// LanguageSelector.JSON
+		// LanguageSelector.JSON,
+		// LanguageSelector.Prolog,
+		// LanguageSelector.SASL,
+		// LanguageSelector.Smalltalk
 
 		default:
 			throw new ArgumentException(
