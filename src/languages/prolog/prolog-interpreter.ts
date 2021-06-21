@@ -4,7 +4,7 @@ import { LanguageSelector } from 'thaw-lexical-analyzer';
 
 // import { IExpression, ISExpression, SchemeGlobalInfo } from 'thaw-grammar';
 import {
-	IExpression,
+	// IExpression,
 	IPrologExpression,
 	PrologClause,
 	PrologGlobalInfo,
@@ -26,6 +26,12 @@ export class PrologInterpreter extends InterpreterBase<IPrologExpression> {
 		this.globalInfo.clearPrintedText();
 
 		// let evaluationResultAsString = '';
+
+		if (catchExceptions !== false) {
+			console.log(
+				'catchExceptions is not currently supported by the Prolog interpreter.'
+			);
+		}
 
 		// if (catchExceptions !== false) {
 		// 	// I.e. catchExceptions is true or undefined

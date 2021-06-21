@@ -77,7 +77,7 @@ function driver() {
 		.then(() => {
 			// process.stdout.write('readEvaluatePrintLoop() resolved successfully.\n\n');
 		})
-		.catch((error: any) => {
+		.catch((error: unknown) => {
 			process.stderr.write(
 				`Error in readEvaluatePrintLoop(): ${typeof error} ${error}\n`
 			);
