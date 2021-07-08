@@ -13,7 +13,7 @@ export class LISPInterpreter extends InterpreterBase<ISExpression> {
 		super(LanguageSelector.LISP, new LISPGlobalInfo(), quiet);
 	}
 
-	public evaluate(parseResult: any, catchExceptions?: boolean): string {
+	public evaluate(parseResult: unknown, catchExceptions?: boolean): string {
 		const expr = parseResult as IExpression<ISExpression>;
 
 		this.globalInfo.clearPrintedText();

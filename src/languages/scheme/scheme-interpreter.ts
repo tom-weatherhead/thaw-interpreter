@@ -13,7 +13,7 @@ export class SchemeInterpreter extends InterpreterBase<ISExpression> {
 		super(LanguageSelector.Scheme, new SchemeGlobalInfo(), quiet);
 	}
 
-	public evaluate(parseResult: any, catchExceptions?: boolean): string {
+	public evaluate(parseResult: unknown, catchExceptions?: boolean): string {
 		const expr = parseResult as IExpression<ISExpression>;
 
 		this.globalInfo.clearPrintedText();

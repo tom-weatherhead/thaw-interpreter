@@ -18,7 +18,7 @@ export class PrologInterpreter extends InterpreterBase<IPrologExpression> {
 		super(LanguageSelector.Prolog2, new PrologGlobalInfo(), quiet);
 	}
 
-	public evaluate(parseResult: any, catchExceptions?: boolean): string {
+	public evaluate(parseResult: unknown, catchExceptions?: boolean): string {
 		const prologGlobalInfo = this.globalInfo as PrologGlobalInfo;
 		// const expr = parseResult as IExpression<IPrologExpression>;
 		const expr = parseResult as PrologClause | PrologGoal[];

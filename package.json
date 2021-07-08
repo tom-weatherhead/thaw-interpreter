@@ -1,11 +1,13 @@
 {
 	"name": "thaw-interpreter",
 	"version": "0.0.2",
-	"description": "Programming langage interpreters implemented in Node.js.",
+	"description": "Programming language interpreters, including LISP, Scheme, and Prolog.",
 	"keywords": [
 		"interpreter",
 		"LISP",
 		"programming languages",
+		"Prolog",
+		"Scheme",
 		"TypeScript"
 	],
 	"private": false,
@@ -22,7 +24,7 @@
 	"files": [
 		"loader.js",
 		"dist/thaw-interpreter*.js",
-		"dist/types/cli.js",
+		"dist/lib/cli.js",
 		"dist/types/**/*.d.ts"
 	],
 	"bin": {
@@ -61,8 +63,8 @@
 		"loc": "git ls-files | grep -v package-lock.json | tr -d '\\r' | tr '\\n' '\\0' | xargs -0 wc -l",
 		"re": "npm run prettier-format && npm run clean-build-products && npm run build-and-test && npm pack && npm run deploy",
 		"f": "npm run clean && npm i && npm run re",
-		"start": "npm run all",
-		"cli": "node loader.js"
+		"cli": "node loader.js",
+		"start": "npm run cli"
 	},
 	"config": {
 		"deploy_target_dir": "$NPM_PKG_DIR"
@@ -80,17 +82,19 @@
 		"@babel/core": "^7.14.6",
 		"@babel/preset-env": "^7.14.7",
 		"@babel/preset-typescript": "^7.14.5",
-		"@types/eslint": "^7.2.13",
-		"@types/jest": "^26.0.23",
-		"@types/node": "^14",
-		"@typescript-eslint/eslint-plugin": "^4.28.0",
-		"@typescript-eslint/parser": "^4.28.0",
-		"eslint": "^7.29.0",
-		"jest": "^27.0.5",
-		"prettier": "^2.3.1",
-		"rollup": "^2.52.2",
+		"@types/eslint": "^7.2.14",
+		"@types/jest": "^26.0.24",
+		"@types/node": "^16",
+		"@typescript-eslint/eslint-plugin": "^4.28.2",
+		"@typescript-eslint/parser": "^4.28.2",
+		"@typescript-eslint/typescript-estree": "^4.28.2",
+		"eslint": "^7.30.0",
+		"jest": "^27.0.6",
+		"prettier": "^2.3.2",
+		"rollup": "^2.52.8",
 		"rollup-plugin-terser": "^7.0.2",
-		"typescript": "^4.3.4"
+		"typescript": "^4.3.5",
+		"typescript-eslint-language-service": "^4.1.4"
 	},
 	"peerDependencies": {},
 	"// The correct name is bundledDependencies": true,

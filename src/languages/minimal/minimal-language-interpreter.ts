@@ -13,7 +13,7 @@ export class MinimalLanguageInterpreter extends InterpreterBase<number> {
 		super(LanguageSelector.MinimalLanguage, new MinimalLanguageGlobalInfo(), quiet);
 	}
 
-	public evaluate(parseResult: any, catchExceptions?: boolean): string {
+	public evaluate(parseResult: unknown, catchExceptions?: boolean): string {
 		const expr = parseResult as IExpression<number>;
 
 		// this.globalInfo.clearPrintedText(); // The minimal language does not support printing.

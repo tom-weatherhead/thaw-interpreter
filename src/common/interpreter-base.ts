@@ -41,7 +41,7 @@ export abstract class InterpreterBase<T> implements IInterpreter {
 		this.globalInfo.initialize();
 	}
 
-	public abstract evaluate(parseResult: any, catchExceptions?: boolean): string;
+	public abstract evaluate(parseResult: unknown, catchExceptions?: boolean): string;
 
 	public evaluateFromString(inputString: string, catchExceptions?: boolean): string {
 		const listOfTokens = this.tokenizer.tokenize(inputString);

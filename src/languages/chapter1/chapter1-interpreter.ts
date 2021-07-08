@@ -13,7 +13,7 @@ export class Chapter1Interpreter extends InterpreterBase<number> {
 		super(LanguageSelector.Chapter1, new Chapter1GlobalInfo(), quiet);
 	}
 
-	public evaluate(parseResult: any, catchExceptions?: boolean): string {
+	public evaluate(parseResult: unknown, catchExceptions?: boolean): string {
 		const expr = parseResult as IExpression<number>;
 
 		this.globalInfo.clearPrintedText();

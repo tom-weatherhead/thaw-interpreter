@@ -5,4 +5,4 @@
 require = require('esm')(module/*, options*/)
 
 // module.exports = require("./main.js")
-require('./dist/types/cli.js');
+require('./dist/lib/cli.js');
