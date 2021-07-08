@@ -28,9 +28,7 @@ export class PrologInterpreter extends InterpreterBase<IPrologExpression> {
 		// let evaluationResultAsString = '';
 
 		if (catchExceptions !== false) {
-			console.log(
-				'catchExceptions is not currently supported by the Prolog interpreter.'
-			);
+			console.log('catchExceptions is not currently supported by the Prolog interpreter.');
 		}
 
 		// if (catchExceptions !== false) {

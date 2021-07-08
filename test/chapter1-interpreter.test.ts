@@ -117,8 +117,7 @@ test('Chapter1Interpreter miscellaneous tests', () => {
 
 test('Chapter1Interpreter gcd function test', () => {
 	// Arrange
-	const gcdFunctionDefinition =
-		'(define gcd (a b) (if (= b 0) a (gcd b (- a (* (/ a b) b)))))';
+	const gcdFunctionDefinition = '(define gcd (a b) (if (= b 0) a (gcd b (- a (* (/ a b) b)))))';
 
 	evalStr(gcdFunctionDefinition);
 

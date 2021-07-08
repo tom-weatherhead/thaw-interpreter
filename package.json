@@ -70,9 +70,9 @@
 	"publishConfig": {},
 	"dependencies": {
 		"esm": "^3.2.25",
-		"thaw-common-utilities.ts": "file:thaw-common-utilities.ts.tgz",
+		"thaw-common-utilities.ts": "^0.0.8",
 		"thaw-grammar": "file:thaw-grammar.tgz",
-		"thaw-lexical-analyzer": "file:thaw-lexical-analyzer.tgz",
+		"thaw-lexical-analyzer": "^0.0.2",
 		"thaw-parser": "file:thaw-parser.tgz",
 		"thaw-repl": "^0.0.2"
 	},

@@ -8,9 +8,7 @@ import { readEvaluatePrintLoop } from 'thaw-repl';
 
 import { createInterpreter } from './common/interpreter-factory';
 
-process.stdout.write(
-	'\nThis is the command line interface for thaw-interpreter\n\n'
-);
+process.stdout.write('\nThis is the command line interface for thaw-interpreter\n\n');
 
 function printUsageMessage() {
 	process.stdout.write('\n');
@@ -60,9 +58,7 @@ function driver() {
 	}
 
 	if (languageSelector === undefined) {
-		process.stdout.write(
-			`Error: No interpreter available for language '${languageName}'.\n`
-		);
+		process.stdout.write(`Error: No interpreter available for language '${languageName}'.\n`);
 		printUsageMessage();
 		return;
 	}
@@ -70,17 +66,14 @@ function driver() {
 	const interpreter = createInterpreter(languageSelector);
 
 	const isExitCommand = (command: string) => command === 'exit';
-	const evaluate = (command: string) =>
-		interpreter.evaluateFromString(command);
+	const evaluate = (command: string) => interpreter.evaluateFromString(command);
 
 	readEvaluatePrintLoop(isExitCommand, evaluate)
 		.then(() => {
 			// process.stdout.write('readEvaluatePrintLoop() resolved successfully.\n\n');
 		})
 		.catch((error: unknown) => {
-			process.stderr.write(
-				`Error in readEvaluatePrintLoop(): ${typeof error} ${error}\n`
-			);
+			process.stderr.write(`Error in readEvaluatePrintLoop(): ${typeof error} ${error}\n`);
 		});
 }
 

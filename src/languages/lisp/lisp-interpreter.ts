@@ -25,10 +25,7 @@ export class LISPInterpreter extends InterpreterBase<ISExpression> {
 
 			try {
 				evaluationResultAsString = expr
-					.evaluate(
-						this.globalInfo.globalEnvironment,
-						this.globalInfo
-					)
+					.evaluate(this.globalInfo.globalEnvironment, this.globalInfo)
 					.toString();
 			} catch (ex) {
 				evaluationResultAsString = `Exception: ${ex}`;

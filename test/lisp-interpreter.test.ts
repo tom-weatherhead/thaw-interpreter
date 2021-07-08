@@ -176,8 +176,7 @@ test('LISPInterpreter miscellaneous tests', () => {
 
 test('LISPInterpreter gcd function test', () => {
 	// Arrange
-	const gcdFunctionDefinition =
-		'(define gcd (a b) (if (= b 0) a (gcd b (- a (* (/ a b) b)))))';
+	const gcdFunctionDefinition = '(define gcd (a b) (if (= b 0) a (gcd b (- a (* (/ a b) b)))))';
 
 	evalStr(gcdFunctionDefinition);
 

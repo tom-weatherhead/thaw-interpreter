@@ -23,19 +23,12 @@ export abstract class InterpreterBase<T> implements IInterpreter {
 	protected globalInfo: IGlobalInfo<T>;
 	protected readonly quiet: boolean;
 
-	protected constructor(
-		ls: LanguageSelector,
-		globalInfo: IGlobalInfo<T>,
-		quiet = false
-	) {
+	protected constructor(ls: LanguageSelector, globalInfo: IGlobalInfo<T>, quiet = false) {
 		this.globalInfo = globalInfo;
 		this.quiet = quiet;
 
 		this.grammar = createGrammar(ls);
-		this.tokenizer = createTokenizer(
-			LexicalAnalyzerSelector.MidnightHack,
-			ls
-		);
+		this.tokenizer = createTokenizer(LexicalAnalyzerSelector.MidnightHack, ls);
 		this.parser = createParser(ParserSelector.LL1, this.grammar);
 	}
 
@@ -48,15 +41,9 @@ export abstract class InterpreterBase<T> implements IInterpreter {
 		this.globalInfo.initialize();
 	}
 
-	public abstract evaluate(
-		parseResult: any,
-		catchExceptions?: boolean
-	): string;
+	public abstract evaluate(parseResult: any, catchExceptions?: boolean): string;
 
-	public evaluateFromString(
-		inputString: string,
-		catchExceptions?: boolean
-	): string {
+	public evaluateFromString(inputString: string, catchExceptions?: boolean): string {
 		const listOfTokens = this.tokenizer.tokenize(inputString);
 		const parseResult = this.parser.parse(listOfTokens);
 

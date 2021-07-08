@@ -10,11 +10,7 @@ import { InterpreterBase } from '../../common/interpreter-base';
 
 export class MinimalLanguageInterpreter extends InterpreterBase<number> {
 	constructor(quiet = false) {
-		super(
-			LanguageSelector.MinimalLanguage,
-			new MinimalLanguageGlobalInfo(),
-			quiet
-		);
+		super(LanguageSelector.MinimalLanguage, new MinimalLanguageGlobalInfo(), quiet);
 	}
 
 	public evaluate(parseResult: any, catchExceptions?: boolean): string {
@@ -26,19 +22,12 @@ export class MinimalLanguageInterpreter extends InterpreterBase<number> {
 			// I.e. catchExceptions is true or undefined
 
 			try {
-				return expr
-					.evaluate(
-						this.globalInfo.globalEnvironment,
-						this.globalInfo
-					)
-					.toString();
+				return expr.evaluate(this.globalInfo.globalEnvironment, this.globalInfo).toString();
 			} catch (ex) {
 				return `Exception: ${ex}`;
 			}
 		} else {
-			return expr
-				.evaluate(this.globalInfo.globalEnvironment, this.globalInfo)
-				.toString();
+			return expr.evaluate(this.globalInfo.globalEnvironment, this.globalInfo).toString();
 		}
 
 		// return this.globalInfo.getPrintedText() + evaluationResultAsString;
