@@ -121,9 +121,9 @@ Exit an interpreter by typing 'exit'.
 [lines-of-code-url]: https://badgen.net/codeclimate/loc/tom-weatherhead/thaw-interpreter
 [technical-debt-badge-image]: https://badgen.net/codeclimate/tech-debt/tom-weatherhead/thaw-interpreter
 [technical-debt-url]: https://badgen.net/codeclimate/tech-debt/tom-weatherhead/thaw-interpreter
-[maintainability-badge-image]: https://api.codeclimate.com/v1/badges/0123456789abcdef0123/maintainability
+[maintainability-badge-image]: https://api.codeclimate.com/v1/badges/00fd26bf392fe00fc933/maintainability
 [maintainability-url]: https://codeclimate.com/github/tom-weatherhead/thaw-interpreter/maintainability
-[test-coverage-badge-image]: https://api.codeclimate.com/v1/badges/0123456789abcdef0123/test_coverage
+[test-coverage-badge-image]: https://api.codeclimate.com/v1/badges/00fd26bf392fe00fc933/test_coverage
 [test-coverage-url]: https://codeclimate.com/github/tom-weatherhead/thaw-interpreter/test_coverage
 [jest-badge-image]: https://img.shields.io/badge/tested_with-jest-99424f.svg
 [jest-url]: https://github.com/facebook/jest

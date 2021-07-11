@@ -20,7 +20,7 @@ indent_size = 4
 # max_line_length = a positive integer | off
 # max_line_length is supported by: Emacs, Vim, Atom, (ReSharper and Rider),
 # (AppCode, IntelliJ IDEA, PhpStorm, PyCharm, RubyMine, and WebStorm), and Kakoune
-max_line_length = 110
+max_line_length = 100
 
 # trim_trailing_whitespace = true | false
 trim_trailing_whitespace = true

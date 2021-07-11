@@ -552,7 +552,8 @@ test('SchemeInterpreter nested call/cc test', () => {
 
 test('SchemeInterpreter gcd function test', () => {
 	// Arrange
-	const gcdFunctionDefinition = '(set gcd (lambda (a b) (if (= b 0) a (gcd b (- a (* (/ a b) b))))))';
+	const gcdFunctionDefinition =
+		'(set gcd (lambda (a b) (if (= b 0) a (gcd b (- a (* (/ a b) b))))))';
 
 	evalStr(gcdFunctionDefinition);
 
