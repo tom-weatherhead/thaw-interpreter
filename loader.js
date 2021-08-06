@@ -4,5 +4,7 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 require = require('esm')(module/*, options*/)
 
-// module.exports = require("./main.js")
-require('./dist/lib/cli.js');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const engine = require('.');
+
+engine.driver();

@@ -1,3 +1,5 @@
+// babel.config.js
+
 /**
  * Copyright (c) Tom Weatherhead. All Rights Reserved.
  *

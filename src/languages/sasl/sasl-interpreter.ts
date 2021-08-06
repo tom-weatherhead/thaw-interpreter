@@ -1,14 +1,14 @@
-// tom-weatherhead/thaw-interpreter/src/languages/scheme/scheme-interpreter.ts
+// tom-weatherhead/thaw-interpreter/src/languages/sasl/sasl-interpreter.ts
 
 import { LanguageSelector } from 'thaw-lexical-analyzer';
 
-import { IExpression, ISExpression, SchemeGlobalInfo } from 'thaw-grammar';
+import { IExpression, ISExpression, SASLGlobalInfo } from 'thaw-grammar';
 
 import { InterpreterBase } from '../../common/interpreter-base';
 
-export class SchemeInterpreter extends InterpreterBase<ISExpression> {
+export class SASLInterpreter extends InterpreterBase<ISExpression> {
 	constructor(quiet = false) {
-		super(LanguageSelector.Scheme, new SchemeGlobalInfo(), quiet);
+		super(LanguageSelector.SASL, new SASLGlobalInfo(), quiet);
 	}
 
 	public evaluate(parseResult: unknown, catchExceptions?: boolean): string {

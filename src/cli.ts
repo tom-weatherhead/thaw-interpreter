@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 // tom-weatherhead/thaw-interpreter/src/cli.ts
 
 import { LanguageSelector } from 'thaw-lexical-analyzer';
@@ -21,7 +19,7 @@ function printUsageMessage() {
 	process.stdout.write('\n');
 }
 
-function driver() {
+export function driver(): void {
 	if (process.argv.length < 3) {
 		process.stdout.write('Error: No language specified.\n');
 		printUsageMessage();
@@ -44,13 +42,17 @@ function driver() {
 			languageSelector = LanguageSelector.LISP;
 			break;
 
+		case 'scheme':
+			languageSelector = LanguageSelector.Scheme;
+			break;
+
+		case 'sasl':
+			languageSelector = LanguageSelector.SASL;
+			break;
+
 		case 'prolog':
 			// languageSelector = LanguageSelector.Prolog; // Kamin's notation
 			languageSelector = LanguageSelector.Prolog2; // Standard
-			break;
-
-		case 'scheme':
-			languageSelector = LanguageSelector.Scheme;
 			break;
 
 		default:
@@ -77,4 +79,4 @@ function driver() {
 		});
 }
 
-driver();
+// driver();
