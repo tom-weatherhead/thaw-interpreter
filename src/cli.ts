@@ -10,12 +10,11 @@ process.stdout.write('\nThis is the command line interface for thaw-interpreter\
 
 function printUsageMessage() {
 	process.stdout.write('\n');
-	process.stdout.write('Usage:\n');
+	process.stdout.write('Usage: $ intrp [language name]\n');
 	process.stdout.write('\n');
-	process.stdout.write('    intrp lisp\n');
-	process.stdout.write('    intrp scheme\n');
-	process.stdout.write('    intrp sasl\n');
-	process.stdout.write('    intrp prolog\n');
+	process.stdout.write('E.g.: $ intrp lisp\n');
+	process.stdout.write('\n');
+	process.stdout.write('Available languages: minimal, chapter1, lisp, scheme, sasl, prolog');
 	process.stdout.write('\n');
 }
 
@@ -42,6 +41,10 @@ export function driver(): void {
 			languageSelector = LanguageSelector.LISP;
 			break;
 
+		// case 'apl':
+		// 	languageSelector = LanguageSelector.APL;
+		// 	break;
+
 		case 'scheme':
 			languageSelector = LanguageSelector.Scheme;
 			break;
@@ -49,6 +52,14 @@ export function driver(): void {
 		case 'sasl':
 			languageSelector = LanguageSelector.SASL;
 			break;
+
+		// case 'clu':
+		// 	languageSelector = LanguageSelector.CLU;
+		// 	break;
+
+		// case 'smalltalk':
+		// 	languageSelector = LanguageSelector.Smalltalk;
+		// 	break;
 
 		case 'prolog':
 			// languageSelector = LanguageSelector.Prolog; // Kamin's notation
@@ -78,5 +89,3 @@ export function driver(): void {
 			process.stderr.write(`Error in readEvaluatePrintLoop(): ${typeof error} ${error}\n`);
 		});
 }
-
-// driver();
