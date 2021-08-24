@@ -1,6 +1,6 @@
 // tom-weatherhead/thaw-interpreter/src/common/interpreter-factory.ts
 
-import { LanguageSelector } from 'thaw-lexical-analyzer';
+import { LanguageSelector } from 'thaw-interpreter-types';
 
 import { ArgumentException } from 'thaw-grammar';
 

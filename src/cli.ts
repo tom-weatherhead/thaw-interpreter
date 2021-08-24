@@ -1,6 +1,6 @@
 // tom-weatherhead/thaw-interpreter/src/cli.ts
 
-import { LanguageSelector } from 'thaw-lexical-analyzer';
+import { LanguageSelector } from 'thaw-interpreter-types';
 
 import { readEvaluatePrintLoop } from 'thaw-repl';
 

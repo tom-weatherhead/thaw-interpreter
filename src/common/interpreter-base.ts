@@ -3,15 +3,19 @@
 'use strict';
 
 import {
-	createTokenizer,
+	IGrammar,
+	IParser,
 	ITokenizer,
 	LanguageSelector,
-	LexicalAnalyzerSelector
-} from 'thaw-lexical-analyzer';
+	LexicalAnalyzerSelector,
+	ParserSelector
+} from 'thaw-interpreter-types';
 
-import { createGrammar, IGlobalInfo, IGrammar } from 'thaw-grammar';
+import { createTokenizer } from 'thaw-lexical-analyzer';
 
-import { createParser, IParser, ParserSelector } from 'thaw-parser';
+import { createGrammar, IGlobalInfo } from 'thaw-grammar';
+
+import { createParser } from 'thaw-parser';
 
 import { IInterpreter } from './iinterpreter';
 

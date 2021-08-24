@@ -2,7 +2,7 @@
 
 'use strict';
 
-import { LanguageSelector } from 'thaw-lexical-analyzer';
+import { LanguageSelector } from 'thaw-interpreter-types';
 
 import { Chapter1GlobalInfo, IExpression } from 'thaw-grammar';
 
