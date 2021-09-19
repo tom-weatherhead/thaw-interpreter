@@ -1,7 +1,5 @@
 // tom-weatherhead/thaw-interpreter/src/common/iinterpreter.ts
 
-'use strict';
-
 export interface IInterpreter {
 	languageName: string; // This is a 'get' accessor.
 

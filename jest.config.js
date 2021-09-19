@@ -3,8 +3,8 @@
 /**
  * Copyright (c) Tom Weatherhead. All Rights Reserved.
  *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
+ * This source code is licensed under the MIT license found in
+ * the LICENSE file in the root directory of this source tree.
  */
 
 'use strict';
@@ -15,5 +15,5 @@ module.exports = {
 	"moduleFileExtensions": ["ts", "js"],
 	"testEnvironment": "node",
 	"testRegex": "(/test/.+\\.test\\.ts$)",
-	"transformIgnorePatterns": ["/node_modules/(?!(thaw-common-utilities.ts|thaw-grammar|thaw-lexical-analyzer|thaw-parser|thaw-repl))/"]
+	"transformIgnorePatterns": ["/node_modules/(?!(thaw-common-utilities.ts|thaw-grammar|thaw-interpreter-core|thaw-interpreter-types|thaw-lexical-analyzer|thaw-parser|thaw-repl))/"]
 };

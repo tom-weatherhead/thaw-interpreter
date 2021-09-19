@@ -1,7 +1,5 @@
 // tom-weatherhead/thaw-interpreter/src/languages/lisp/lisp-interpreter.ts
 
-'use strict';
-
 import { LanguageSelector } from 'thaw-interpreter-types';
 
 import { IExpression, ISExpression, LISPGlobalInfo } from 'thaw-grammar';

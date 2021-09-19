@@ -1,7 +1,5 @@
 // tom-weatherhead/thaw-interpreter/src/common/interpreter-base.ts
 
-'use strict';
-
 import {
 	IGrammar,
 	IParser,

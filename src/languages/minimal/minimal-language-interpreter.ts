@@ -1,7 +1,5 @@
 // tom-weatherhead/thaw-interpreter/src/languages/minimal/minimal-language-interpreter.ts
 
-'use strict';
-
 import { LanguageSelector } from 'thaw-interpreter-types';
 
 import { IExpression, MinimalLanguageGlobalInfo } from 'thaw-grammar';

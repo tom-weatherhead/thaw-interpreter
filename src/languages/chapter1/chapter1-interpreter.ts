@@ -1,7 +1,5 @@
 // tom-weatherhead/thaw-interpreter/src/languages/chapter1/chapter1-interpreter.ts
 
-'use strict';
-
 import { LanguageSelector } from 'thaw-interpreter-types';
 
 import { Chapter1GlobalInfo, IExpression } from 'thaw-grammar';
