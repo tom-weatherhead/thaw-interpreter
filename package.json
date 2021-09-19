@@ -72,8 +72,6 @@
 	},
 	"publishConfig": {},
 	"dependencies": {
-		"esm": "^3.2.25",
-		"thaw-common-utilities.ts": "^0.0.10",
 		"thaw-grammar": "^0.0.5",
 		"thaw-interpreter-core": "^0.0.1",
 		"thaw-lexical-analyzer": "^0.0.5",
