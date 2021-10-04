@@ -9,4 +9,5 @@ export interface IInterpreter {
 
 	// Parameters in functions in interfaces cannot have initializers.
 	evaluateFromString(inputString: string, catchExceptions?: boolean): string;
+	// Or: evaluateFromString(inputString: string, options?: { catchExceptions?: boolean }): string;
 }
