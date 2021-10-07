@@ -1,6 +1,6 @@
 {
 	"name": "thaw-interpreter",
-	"version": "0.0.4",
+	"version": "0.0.5",
 	"description": "Programming language interpreters, including LISP, Scheme, and Prolog.",
 	"keywords": [
 		"interpreter",
