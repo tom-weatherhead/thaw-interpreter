@@ -65,17 +65,18 @@
 		"re": "npm run prettier-format && npm run clean-build-products && npm run build-and-test && npm pack && npm run deploy",
 		"f": "npm run clean && npm i && npm run re",
 		"cli": "node loader.js",
-		"start": "npm run cli"
+		"start": "npm run cli",
+		"t1": "node run-script.js lcaug examples/scripts/lambda-calculus-augmented-syntax/test1.lca"
 	},
 	"config": {
 		"deploy_target_dir": "$NPM_PKG_DIR"
 	},
 	"publishConfig": {},
 	"dependencies": {
-		"thaw-grammar": "^0.0.6",
-		"thaw-interpreter-core": "^0.0.2",
-		"thaw-lexical-analyzer": "^0.0.6",
-		"thaw-parser": "^0.0.6",
+		"thaw-grammar": "file:thaw-grammar.tgz",
+		"thaw-interpreter-core": "file:thaw-interpreter-core.tgz",
+		"thaw-lexical-analyzer": "file:thaw-lexical-analyzer.tgz",
+		"thaw-parser": "file:thaw-parser.tgz",
 		"thaw-repl": "^0.0.2"
 	},
 	"devDependencies": {
@@ -94,7 +95,7 @@
 		"prettier": "^2.4.1",
 		"rollup": "^2.58.0",
 		"rollup-plugin-terser": "^7.0.2",
-		"thaw-interpreter-types": "^0.0.2",
+		"thaw-interpreter-types": "file:thaw-interpreter-types.tgz",
 		"typescript": "^4.4.3",
 		"typescript-eslint-language-service": "^4.1.5"
 	},

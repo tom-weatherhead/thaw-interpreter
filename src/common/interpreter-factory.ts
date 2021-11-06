@@ -2,7 +2,7 @@
 
 import { LanguageSelector } from 'thaw-interpreter-types';
 
-import { ArgumentException } from 'thaw-grammar';
+import { ArgumentException } from 'thaw-interpreter-core';
 
 import { MinimalLanguageInterpreter } from '../languages/minimal/minimal-language-interpreter';
 
@@ -13,7 +13,7 @@ import { LISPInterpreter } from '../languages/lisp/lisp-interpreter';
 import { SchemeInterpreter } from '../languages/scheme/scheme-interpreter';
 import { SASLInterpreter } from '../languages/sasl/sasl-interpreter';
 // import { CLUInterpreter } from '../languages/clu/clu-interpreter';
-// import { SmalltalkInterpreter } from '../languages/smalltalk/smalltalk-interpreter';
+import { SmalltalkInterpreter } from '../languages/smalltalk/smalltalk-interpreter';
 import { PrologInterpreter } from '../languages/prolog/prolog-interpreter';
 
 import { IInterpreter } from './iinterpreter';
@@ -26,28 +26,28 @@ export function createInterpreter(ls: LanguageSelector): IInterpreter {
 
 		// LanguageSelector.Micro,
 
-		case LanguageSelector.Chapter1:
+		case LanguageSelector.Chapter1: // (Kamin 1/8)
 			return new Chapter1Interpreter();
 
-		case LanguageSelector.LISP:
+		case LanguageSelector.LISP: // (Kamin 2/8)
 			return new LISPInterpreter();
 
-		// case LanguageSelector.APL:
+		// case LanguageSelector.APL:		// (Kamin 3/8)
 		// 	return new APLInterpreter();
 
-		case LanguageSelector.Scheme:
+		case LanguageSelector.Scheme: // (Kamin 4/8)
 			return new SchemeInterpreter();
 
-		case LanguageSelector.SASL:
+		case LanguageSelector.SASL: // (Kamin 5/8)
 			return new SASLInterpreter();
 
-		// case LanguageSelector.CLU:
+		// case LanguageSelector.CLU:		// (Kamin 6/8)
 		// 	return new CLUInterpreter();
 
-		// case LanguageSelector.Smalltalk:
-		// 	return new SmalltalkInterpreter();
+		case LanguageSelector.Smalltalk: // (Kamin 7/8)
+			return new SmalltalkInterpreter();
 
-		// case LanguageSelector.Prolog:
+		// case LanguageSelector.Prolog:	// (Kamin 8/8)
 		case LanguageSelector.Prolog2:
 			return new PrologInterpreter();
 

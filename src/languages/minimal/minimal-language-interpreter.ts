@@ -6,9 +6,11 @@ import { IExpression, MinimalLanguageGlobalInfo } from 'thaw-grammar';
 
 import { InterpreterBase } from '../../common/interpreter-base';
 
-export class MinimalLanguageInterpreter extends InterpreterBase<number> {
+export class MinimalLanguageInterpreter extends InterpreterBase {
+	private readonly globalInfo = new MinimalLanguageGlobalInfo();
+
 	constructor(quiet = false) {
-		super(LanguageSelector.MinimalLanguage, new MinimalLanguageGlobalInfo(), quiet);
+		super(LanguageSelector.MinimalLanguage, quiet);
 	}
 
 	public evaluate(parseResult: unknown, catchExceptions?: boolean): string {

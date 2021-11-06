@@ -2,10 +2,9 @@
 
 import { LanguageSelector } from 'thaw-interpreter-types';
 
-// import { IExpression, ISExpression, SchemeGlobalInfo } from 'thaw-grammar';
 import {
 	// IExpression,
-	IPrologExpression,
+	// IPrologExpression,
 	PrologClause,
 	PrologGlobalInfo,
 	PrologGoal
@@ -13,9 +12,11 @@ import {
 
 import { InterpreterBase } from '../../common/interpreter-base';
 
-export class PrologInterpreter extends InterpreterBase<IPrologExpression> {
+export class PrologInterpreter extends InterpreterBase {
+	private readonly globalInfo = new PrologGlobalInfo();
+
 	constructor(quiet = false) {
-		super(LanguageSelector.Prolog2, new PrologGlobalInfo(), quiet);
+		super(LanguageSelector.Prolog2, quiet);
 	}
 
 	public evaluate(parseResult: unknown, catchExceptions?: boolean): string {

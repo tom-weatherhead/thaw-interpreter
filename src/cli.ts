@@ -57,9 +57,9 @@ export function driver(): void {
 		// 	languageSelector = LanguageSelector.CLU;
 		// 	break;
 
-		// case 'smalltalk':
-		// 	languageSelector = LanguageSelector.Smalltalk;
-		// 	break;
+		case 'smalltalk':
+			languageSelector = LanguageSelector.Smalltalk;
+			break;
 
 		case 'prolog':
 			// languageSelector = LanguageSelector.Prolog; // Kamin's notation

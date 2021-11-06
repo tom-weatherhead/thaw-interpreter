@@ -6,9 +6,11 @@ import { Chapter1GlobalInfo, IExpression } from 'thaw-grammar';
 
 import { InterpreterBase } from '../../common/interpreter-base';
 
-export class Chapter1Interpreter extends InterpreterBase<number> {
+export class Chapter1Interpreter extends InterpreterBase {
+	private readonly globalInfo = new Chapter1GlobalInfo();
+
 	constructor(quiet = false) {
-		super(LanguageSelector.Chapter1, new Chapter1GlobalInfo(), quiet);
+		super(LanguageSelector.Chapter1, quiet);
 	}
 
 	public evaluate(parseResult: unknown, catchExceptions?: boolean): string {

@@ -6,9 +6,11 @@ import { IExpression, ISExpression, LISPGlobalInfo } from 'thaw-grammar';
 
 import { InterpreterBase } from '../../common/interpreter-base';
 
-export class LISPInterpreter extends InterpreterBase<ISExpression> {
+export class LISPInterpreter extends InterpreterBase {
+	private readonly globalInfo = new LISPGlobalInfo();
+
 	constructor(quiet = false) {
-		super(LanguageSelector.LISP, new LISPGlobalInfo(), quiet);
+		super(LanguageSelector.LISP, quiet);
 	}
 
 	public evaluate(parseResult: unknown, catchExceptions?: boolean): string {

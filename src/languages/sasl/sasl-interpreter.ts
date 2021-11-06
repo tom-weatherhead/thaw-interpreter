@@ -6,9 +6,11 @@ import { IExpression, ISExpression, SASLGlobalInfo } from 'thaw-grammar';
 
 import { InterpreterBase } from '../../common/interpreter-base';
 
-export class SASLInterpreter extends InterpreterBase<ISExpression> {
+export class SASLInterpreter extends InterpreterBase {
+	private readonly globalInfo = new SASLGlobalInfo();
+
 	constructor(quiet = false) {
-		super(LanguageSelector.SASL, new SASLGlobalInfo(), quiet);
+		super(LanguageSelector.SASL, quiet);
 	}
 
 	public evaluate(parseResult: unknown, catchExceptions?: boolean): string {

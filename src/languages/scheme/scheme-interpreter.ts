@@ -6,9 +6,11 @@ import { IExpression, ISExpression, SchemeGlobalInfo } from 'thaw-grammar';
 
 import { InterpreterBase } from '../../common/interpreter-base';
 
-export class SchemeInterpreter extends InterpreterBase<ISExpression> {
+export class SchemeInterpreter extends InterpreterBase /* <ISExpression> */ {
+	private readonly globalInfo = new SchemeGlobalInfo();
+
 	constructor(quiet = false) {
-		super(LanguageSelector.Scheme, new SchemeGlobalInfo(), quiet);
+		super(LanguageSelector.Scheme, quiet);
 	}
 
 	public evaluate(parseResult: unknown, catchExceptions?: boolean): string {

@@ -15,69 +15,7 @@ import { createParser } from 'thaw-parser';
 // BetaReductionStrategy,
 import { churchNumeralToInteger, createGrammar, getfb2 } from 'thaw-grammar';
 
-// import { makeEcstaSKIEnvironmentFrame } from './domain-object-model/environment-frame';
-// import { EcstaSKIGlobalInfo } from './domain-object-model/global-info';
-// import { EcstaSKIExpression, isEcstaSKIExpression } from './domain-object-model/types';
-//
-// import { EcstaSKIGrammar } from './grammar';
-// import { GraphReducer } from './graph-reduction/graph-reducer';
-
-// function getInfrastructure(): {
-// 	// tokenizer: ITokenizer;
-// 	// grammar: IGrammar;
-// 	// parser: IParser;
-// 	// localEnvironment: EcstaSKIEnvironmentFrame;
-// 	// globalInfo: EcstaSKIGlobalInfo;
-// 	// graphReducer: GraphReducer;
-// 	// parseInput: (str: string) => EcstaSKIExpression;
-// 	evaluate: (str: string) => string;
-// 	doGraphReduction: (str: string) => string;
-// } {
-// 	const grammar = new EcstaSKIGrammar();
-// 	const tokenizer = createTokenizer(
-// 		LexicalAnalyzerSelector.MidnightHack,
-// 		LanguageSelector.LambdaCalculusWithAugmentedSyntax
-// 	);
-// 	const parser = createParser(ParserSelector.LL1, grammar);
-// 	// const localEnvironment = makeEcstaSKIEnvironmentFrame();
-// 	// const globalInfo = new EcstaSKIGlobalInfo();
-// 	// const graphReducer = new GraphReducer(tokenizer, parser, localEnvironment, globalInfo);
-// 	const parseInput = (str: string): EcstaSKIExpression => {
-// 		const result = parser.parse(tokenizer.tokenize(str)) as EcstaSKIExpression;
-//
-// 		if (!isEcstaSKIExpression(result)) {
-// 			throw new Error(`Parse error: '${str}' does not parse to an EcstaSKIExpression.`);
-// 		}
-//
-// 		return result;
-// 	};
-//
-// 	return {
-// 		evaluate: (str: string) =>
-// 			parseInput(str).evaluate(localEnvironment, globalInfo).toString(),
-// 		doGraphReduction: (str: string) => graphReducer.processInput(str).toString()
-// 	};
-// }
-
 export async function scriptExecutorLCAug(): Promise<void> {
-	// const grammar = new EcstaSKIGrammar();
-	// const tokenizer = createTokenizer(
-	// 	LexicalAnalyzerSelector.MidnightHack,
-	// 	LanguageSelector.LISP
-	// );
-	// const parser = createParser(ParserSelector.LL1, grammar);
-	// const localEnvironment = makeEcstaSKIEnvironmentFrame();
-	// const globalInfo = new EcstaSKIGlobalInfo();
-
-	// const { doGraphReduction, evaluate } = getInfrastructure();
-	// let isGraphReductionEnabled = false;
-
-	// return (str: string): number =>
-	// 	(parser.parse(tokenizer.tokenize(str)) as EcstaSKIExpression).evaluate(
-	// 		localEnvironment,
-	// 		globalInfo
-	// 	).value;
-
 	// If argv.length <= 3 || argv[3] === '-' then read from stdin
 	const filename = argv[3];
 
@@ -102,13 +40,11 @@ export async function scriptExecutorLCAug(): Promise<void> {
 
 		if (line.length === 0 || line.match(/^\s*$/) || line.match(/^\s*#/)) {
 			continue;
-			// } else if (line === '+gr') {
-			// 	isGraphReductionEnabled = true;
-			// 	console.log('Graph reduction enabled.');
+			// } else if (line.match(/^+β([A-Z]+)/)) { // Specify a Beta-reduction strategy
+			// ...
 			// 	continue;
 		}
 
-		// const processInput = isGraphReductionEnabled ? doGraphReduction : evaluate;
 		// const match = line.match(/^:argc ([1-9][0-9]*)$/);
 
 		// if (!argvInjectionDone && match && match[1]) {
@@ -133,11 +69,6 @@ export async function scriptExecutorLCAug(): Promise<void> {
 		// 	continue;
 		// }
 
-		// const lineResult = (
-		// 	parser.parse(tokenizer.tokenize(line)) as EcstaSKIExpression
-		// ).evaluate(localEnvironment, globalInfo);
-		// const lineResult = processInput(line);
-
 		expressionAsString = expressionAsString + line + ' ';
 	}
 
@@ -154,7 +85,7 @@ export async function scriptExecutorLCAug(): Promise<void> {
 		// 	readonly generateNewVariableName?: () => string;
 		// 	readonly maxDepth?: number;
 		// } = {}
-	); // : (s: string) => ILCExpression;
+	);
 	const result = fb2(expressionAsString);
 	const resultAsInteger = churchNumeralToInteger(result);
 	let resultAsString: string;
