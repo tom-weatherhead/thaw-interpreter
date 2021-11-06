@@ -41,9 +41,9 @@ export function driver(): void {
 			languageSelector = LanguageSelector.LISP;
 			break;
 
-		// case 'apl':
-		// 	languageSelector = LanguageSelector.APL;
-		// 	break;
+		case 'apl':
+			languageSelector = LanguageSelector.APL;
+			break;
 
 		case 'scheme':
 			languageSelector = LanguageSelector.Scheme;

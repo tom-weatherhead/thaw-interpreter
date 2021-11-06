@@ -9,7 +9,7 @@ import { MinimalLanguageInterpreter } from '../languages/minimal/minimal-languag
 // From Kamin's book:
 import { Chapter1Interpreter } from '../languages/chapter1/chapter1-interpreter';
 import { LISPInterpreter } from '../languages/lisp/lisp-interpreter';
-// import { APLInterpreter } from '../languages/apl/apl-interpreter';
+import { APLInterpreter } from '../languages/apl/apl-interpreter';
 import { SchemeInterpreter } from '../languages/scheme/scheme-interpreter';
 import { SASLInterpreter } from '../languages/sasl/sasl-interpreter';
 // import { CLUInterpreter } from '../languages/clu/clu-interpreter';
@@ -32,8 +32,8 @@ export function createInterpreter(ls: LanguageSelector): IInterpreter {
 		case LanguageSelector.LISP: // (Kamin 2/8)
 			return new LISPInterpreter();
 
-		// case LanguageSelector.APL:		// (Kamin 3/8)
-		// 	return new APLInterpreter();
+		case LanguageSelector.APL: // (Kamin 3/8)
+			return new APLInterpreter();
 
 		case LanguageSelector.Scheme: // (Kamin 4/8)
 			return new SchemeInterpreter();
