@@ -12,7 +12,7 @@ import { LISPInterpreter } from '../languages/lisp/lisp-interpreter';
 import { APLInterpreter } from '../languages/apl/apl-interpreter';
 import { SchemeInterpreter } from '../languages/scheme/scheme-interpreter';
 import { SASLInterpreter } from '../languages/sasl/sasl-interpreter';
-// import { CLUInterpreter } from '../languages/clu/clu-interpreter';
+import { CLUInterpreter } from '../languages/clu/clu-interpreter';
 import { SmalltalkInterpreter } from '../languages/smalltalk/smalltalk-interpreter';
 import { PrologInterpreter } from '../languages/prolog/prolog-interpreter';
 
@@ -41,8 +41,8 @@ export function createInterpreter(ls: LanguageSelector): IInterpreter {
 		case LanguageSelector.SASL: // (Kamin 5/8)
 			return new SASLInterpreter();
 
-		// case LanguageSelector.CLU:		// (Kamin 6/8)
-		// 	return new CLUInterpreter();
+		case LanguageSelector.CLU: // (Kamin 6/8)
+			return new CLUInterpreter();
 
 		case LanguageSelector.Smalltalk: // (Kamin 7/8)
 			return new SmalltalkInterpreter();

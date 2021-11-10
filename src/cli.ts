@@ -53,9 +53,9 @@ export function driver(): void {
 			languageSelector = LanguageSelector.SASL;
 			break;
 
-		// case 'clu':
-		// 	languageSelector = LanguageSelector.CLU;
-		// 	break;
+		case 'clu':
+			languageSelector = LanguageSelector.CLU;
+			break;
 
 		case 'smalltalk':
 			languageSelector = LanguageSelector.Smalltalk;
