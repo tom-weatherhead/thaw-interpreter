@@ -4,9 +4,9 @@ import {
 	IGrammar,
 	IParser,
 	ITokenizer,
-	LanguageSelector,
-	LexicalAnalyzerSelector,
-	ParserSelector
+	LanguageSelector // ,
+	// LexicalAnalyzerSelector,
+	// ParserSelector
 } from 'thaw-interpreter-types';
 
 import { createTokenizer } from 'thaw-lexical-analyzer';
@@ -30,8 +30,8 @@ export abstract class InterpreterBase /* <T> */ implements IInterpreter {
 		this.quiet = quiet;
 
 		this.grammar = createGrammar(ls);
-		this.tokenizer = createTokenizer(LexicalAnalyzerSelector.MidnightHack, ls);
-		this.parser = createParser(ParserSelector.LL1, this.grammar);
+		this.tokenizer = createTokenizer(this.grammar.defaultLexicalAnalyzer, ls);
+		this.parser = createParser(this.grammar.defaultParser, this.grammar);
 	}
 
 	public get languageName(): string {
