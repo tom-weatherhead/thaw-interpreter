@@ -44,7 +44,9 @@
 // Symbol.terminalAtan2
 // Symbol.terminalThrow
 
-import { createInterpreter, IInterpreter, LanguageSelector } from '..';
+import { LanguageSelector } from 'thaw-interpreter-types';
+
+import { createInterpreter, IInterpreter } from '..';
 
 const trueValueAsString = 'T';
 const falseValueAsString = '()';

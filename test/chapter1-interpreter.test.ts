@@ -7,7 +7,9 @@
 
 'use strict';
 
-import { createInterpreter, IInterpreter, LanguageSelector } from '..';
+import { LanguageSelector } from 'thaw-interpreter-types';
+
+import { createInterpreter, IInterpreter } from '..';
 
 const trueValueAsString = '1';
 const falseValueAsString = '0';
