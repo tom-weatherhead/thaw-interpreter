@@ -19,9 +19,10 @@ export class PrologInterpreter extends InterpreterBase {
 		super(LanguageSelector.Prolog2, quiet);
 	}
 
-	public evaluate(parseResult: unknown, catchExceptions?: boolean): string {
-		const prologGlobalInfo = this.globalInfo as PrologGlobalInfo;
+	public evaluateFromString(inputString: string, catchExceptions?: boolean): string {
+		// const prologGlobalInfo = this.globalInfo as PrologGlobalInfo;
 		// const expr = parseResult as IExpression<IPrologExpression>;
+		const parseResult = this.parser.parse(this.tokenizer.tokenize(inputString));
 		const expr = parseResult as PrologClause | PrologGoal[];
 
 		this.globalInfo.clearPrintedText();
@@ -32,26 +33,7 @@ export class PrologInterpreter extends InterpreterBase {
 			console.log('catchExceptions is not currently supported by the Prolog interpreter.');
 		}
 
-		// if (catchExceptions !== false) {
-		// 	// I.e. catchExceptions is true or undefined
-
-		// 	try {
-		// 		evaluationResultAsString = expr
-		// 			.evaluate(
-		// 				this.globalInfo.globalEnvironment,
-		// 				this.globalInfo
-		// 			)
-		// 			.toString();
-		// 	} catch (ex) {
-		// 		evaluationResultAsString = `Exception: ${ex}`;
-		// 	}
-		// } else {
-		// 	evaluationResultAsString = expr
-		// 		.evaluate(this.globalInfo.globalEnvironment, this.globalInfo)
-		// 		.toString();
-		// }
-
-		const evaluationResultAsString = prologGlobalInfo.ProcessInput(expr);
+		const evaluationResultAsString = this.globalInfo.ProcessInput(expr);
 
 		return this.globalInfo.getPrintedText() + evaluationResultAsString;
 	}

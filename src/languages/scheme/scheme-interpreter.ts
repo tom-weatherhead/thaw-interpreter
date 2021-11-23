@@ -2,19 +2,21 @@
 
 import { LanguageSelector } from 'thaw-interpreter-types';
 
-import { IExpression, ISExpression, SchemeGlobalInfo } from 'thaw-grammar';
+import { SchemeGlobalInfo } from 'thaw-grammar';
 
 import { InterpreterBase } from '../../common/interpreter-base';
 
 export class SchemeInterpreter extends InterpreterBase /* <ISExpression> */ {
-	private readonly globalInfo = new SchemeGlobalInfo();
+	private readonly globalInfo: SchemeGlobalInfo; // = new SchemeGlobalInfo();
 
 	constructor(quiet = false) {
 		super(LanguageSelector.Scheme, quiet);
+
+		this.globalInfo = new SchemeGlobalInfo({ tokenizer: this.tokenizer, parser: this.parser });
 	}
 
-	public evaluate(parseResult: unknown, catchExceptions?: boolean): string {
-		const expr = parseResult as IExpression<ISExpression>;
+	public evaluateFromString(inputString: string, catchExceptions?: boolean): string {
+		// const expr = parseResult as IExpression<ISExpression>;
 
 		this.globalInfo.clearPrintedText();
 
@@ -24,16 +26,12 @@ export class SchemeInterpreter extends InterpreterBase /* <ISExpression> */ {
 			// I.e. catchExceptions is true or undefined
 
 			try {
-				evaluationResultAsString = expr
-					.evaluate(this.globalInfo.globalEnvironment, this.globalInfo)
-					.toString();
+				evaluationResultAsString = this.globalInfo.evaluateToString(inputString);
 			} catch (ex) {
 				evaluationResultAsString = `Exception: ${ex}`;
 			}
 		} else {
-			evaluationResultAsString = expr
-				.evaluate(this.globalInfo.globalEnvironment, this.globalInfo)
-				.toString();
+			evaluationResultAsString = this.globalInfo.evaluateToString(inputString);
 		}
 
 		return this.globalInfo.getPrintedText() + evaluationResultAsString;

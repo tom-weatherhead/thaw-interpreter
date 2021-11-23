@@ -2,19 +2,24 @@
 
 import { LanguageSelector } from 'thaw-interpreter-types';
 
-import { Chapter1GlobalInfo, IExpression } from 'thaw-grammar';
+import { Chapter1GlobalInfo } from 'thaw-grammar';
 
 import { InterpreterBase } from '../../common/interpreter-base';
 
 export class Chapter1Interpreter extends InterpreterBase {
-	private readonly globalInfo = new Chapter1GlobalInfo();
+	private readonly globalInfo: Chapter1GlobalInfo; // = new Chapter1GlobalInfo();
 
 	constructor(quiet = false) {
 		super(LanguageSelector.Chapter1, quiet);
+
+		this.globalInfo = new Chapter1GlobalInfo({
+			tokenizer: this.tokenizer,
+			parser: this.parser
+		});
 	}
 
-	public evaluate(parseResult: unknown, catchExceptions?: boolean): string {
-		const expr = parseResult as IExpression<number>;
+	public evaluateFromString(inputString: string, catchExceptions?: boolean): string {
+		// const expr = parseResult as IExpression<number>;
 
 		this.globalInfo.clearPrintedText();
 
@@ -24,16 +29,12 @@ export class Chapter1Interpreter extends InterpreterBase {
 			// I.e. catchExceptions is true or undefined
 
 			try {
-				evaluationResultAsString = expr
-					.evaluate(this.globalInfo.globalEnvironment, this.globalInfo)
-					.toString();
+				evaluationResultAsString = this.globalInfo.evaluateToString(inputString);
 			} catch (ex) {
 				evaluationResultAsString = `Exception: ${ex}`;
 			}
 		} else {
-			evaluationResultAsString = expr
-				.evaluate(this.globalInfo.globalEnvironment, this.globalInfo)
-				.toString();
+			evaluationResultAsString = this.globalInfo.evaluateToString(inputString);
 		}
 
 		return this.globalInfo.getPrintedText() + evaluationResultAsString;

@@ -1,13 +1,6 @@
 // tom-weatherhead/thaw-interpreter/src/common/interpreter-base.ts
 
-import {
-	IGrammar,
-	IParser,
-	ITokenizer,
-	LanguageSelector // ,
-	// LexicalAnalyzerSelector,
-	// ParserSelector
-} from 'thaw-interpreter-types';
+import { IGrammar, IParser, ITokenizer, LanguageSelector } from 'thaw-interpreter-types';
 
 import { createTokenizer } from 'thaw-lexical-analyzer';
 
@@ -43,12 +36,12 @@ export abstract class InterpreterBase /* <T> */ implements IInterpreter {
 		// this.globalInfo.initialize();
 	}
 
-	public abstract evaluate(parseResult: unknown, catchExceptions?: boolean): string;
+	public abstract evaluateFromString(inputString: string, catchExceptions?: boolean): string;
 
-	public evaluateFromString(inputString: string, catchExceptions?: boolean): string {
-		const listOfTokens = this.tokenizer.tokenize(inputString);
-		const parseResult = this.parser.parse(listOfTokens);
-
-		return this.evaluate(parseResult, catchExceptions);
-	}
+	// public evaluateFromString(inputString: string, catchExceptions?: boolean): string {
+	// 	const listOfTokens = this.tokenizer.tokenize(inputString);
+	// 	const parseResult = this.parser.parse(listOfTokens);
+	//
+	// 	return this.evaluate(parseResult, catchExceptions);
+	// }
 }

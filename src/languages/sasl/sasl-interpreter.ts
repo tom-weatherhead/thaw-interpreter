@@ -2,19 +2,21 @@
 
 import { LanguageSelector } from 'thaw-interpreter-types';
 
-import { IExpression, ISExpression, SASLGlobalInfo } from 'thaw-grammar';
+import { SASLGlobalInfo } from 'thaw-grammar';
 
 import { InterpreterBase } from '../../common/interpreter-base';
 
 export class SASLInterpreter extends InterpreterBase {
-	private readonly globalInfo = new SASLGlobalInfo();
+	private readonly globalInfo: SASLGlobalInfo; // = new SASLGlobalInfo();
 
 	constructor(quiet = false) {
 		super(LanguageSelector.SASL, quiet);
+
+		this.globalInfo = new SASLGlobalInfo({ tokenizer: this.tokenizer, parser: this.parser });
 	}
 
-	public evaluate(parseResult: unknown, catchExceptions?: boolean): string {
-		const expr = parseResult as IExpression<ISExpression>;
+	public evaluateFromString(inputString: string, catchExceptions?: boolean): string {
+		// const expr = parseResult as IExpression<ISExpression>;
 
 		this.globalInfo.clearPrintedText();
 
@@ -24,16 +26,12 @@ export class SASLInterpreter extends InterpreterBase {
 			// I.e. catchExceptions is true or undefined
 
 			try {
-				evaluationResultAsString = expr
-					.evaluate(this.globalInfo.globalEnvironment, this.globalInfo)
-					.toString();
+				evaluationResultAsString = this.globalInfo.evaluateToString(inputString);
 			} catch (ex) {
 				evaluationResultAsString = `Exception: ${ex}`;
 			}
 		} else {
-			evaluationResultAsString = expr
-				.evaluate(this.globalInfo.globalEnvironment, this.globalInfo)
-				.toString();
+			evaluationResultAsString = this.globalInfo.evaluateToString(inputString);
 		}
 
 		return this.globalInfo.getPrintedText() + evaluationResultAsString;

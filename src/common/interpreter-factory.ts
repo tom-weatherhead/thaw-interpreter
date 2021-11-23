@@ -18,7 +18,6 @@ import { PrologInterpreter } from '../languages/prolog/prolog-interpreter';
 
 import { IInterpreter } from './iinterpreter';
 
-// export default function createInterpreter(ls: LanguageSelector): IInterpreter {
 export function createInterpreter(ls: LanguageSelector): IInterpreter {
 	switch (ls) {
 		case LanguageSelector.MinimalLanguage:
