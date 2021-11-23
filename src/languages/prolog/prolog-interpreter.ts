@@ -2,24 +2,18 @@
 
 import { LanguageSelector } from 'thaw-interpreter-types';
 
-import {
-	// IExpression,
-	// IPrologExpression,
-	PrologClause,
-	PrologGlobalInfo,
-	PrologGoal
-} from 'thaw-grammar';
+import { PrologClause, PrologGlobalInfo, PrologGoal } from 'thaw-grammar';
 
 import { InterpreterBase } from '../../common/interpreter-base';
 
 export class PrologInterpreter extends InterpreterBase {
-	private readonly globalInfo = new PrologGlobalInfo();
+	// private readonly globalInfo = new PrologGlobalInfo();
 
 	constructor(quiet = false) {
 		super(LanguageSelector.Prolog2, quiet);
 	}
 
-	public evaluateFromString(inputString: string, catchExceptions?: boolean): string {
+	public override evaluateFromString(inputString: string, catchExceptions?: boolean): string {
 		// const prologGlobalInfo = this.globalInfo as PrologGlobalInfo;
 		// const expr = parseResult as IExpression<IPrologExpression>;
 		const parseResult = this.parser.parse(this.tokenizer.tokenize(inputString));
@@ -33,7 +27,7 @@ export class PrologInterpreter extends InterpreterBase {
 			console.log('catchExceptions is not currently supported by the Prolog interpreter.');
 		}
 
-		const evaluationResultAsString = this.globalInfo.ProcessInput(expr);
+		const evaluationResultAsString = (this.globalInfo as PrologGlobalInfo).ProcessInput(expr);
 
 		return this.globalInfo.getPrintedText() + evaluationResultAsString;
 	}
