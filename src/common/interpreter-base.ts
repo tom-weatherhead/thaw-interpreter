@@ -11,16 +11,12 @@ import { createParser } from 'thaw-parser';
 import { IInterpreter } from './iinterpreter';
 
 export class InterpreterBase implements IInterpreter {
-	/* , IInterpreterUnitTestInterface */
 	protected readonly tokenizer: ITokenizer;
 	protected readonly grammar: IGrammar;
 	protected readonly parser: IParser;
 	protected readonly globalInfo: IGlobalInfoForInterpreter;
-	// protected readonly quiet: boolean;
 
 	constructor(ls: LanguageSelector, protected readonly quiet = false) {
-		// this.quiet = quiet;
-
 		this.grammar = createGrammar(ls);
 		this.tokenizer = createTokenizer(this.grammar.defaultLexicalAnalyzer, ls);
 		this.parser = createParser(this.grammar.defaultParser, this.grammar);
@@ -37,15 +33,6 @@ export class InterpreterBase implements IInterpreter {
 		// Restore the state of the interpreter to its newly-created state.
 		this.globalInfo.initialize();
 	}
-
-	// public abstract evaluateFromString(inputString: string, catchExceptions?: boolean): string;
-
-	// public evaluateFromString(inputString: string, catchExceptions?: boolean): string {
-	// 	const listOfTokens = this.tokenizer.tokenize(inputString);
-	// 	const parseResult = this.parser.parse(listOfTokens);
-	//
-	// 	return this.evaluate(parseResult, catchExceptions);
-	// }
 
 	public evaluateFromString(inputString: string, catchExceptions?: boolean): string {
 		this.globalInfo.clearPrintedText();
