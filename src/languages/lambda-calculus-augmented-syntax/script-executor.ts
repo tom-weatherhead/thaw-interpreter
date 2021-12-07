@@ -13,13 +13,13 @@ import { createTokenizer } from 'thaw-lexical-analyzer';
 import { createParser } from 'thaw-parser';
 
 // BetaReductionStrategy,
-import { churchNumeralToInteger, createGrammar, getfb2 } from 'thaw-grammar';
+import { churchNumeralToInteger, createGrammar, ILCExpression, reduce } from 'thaw-grammar';
 
 export async function scriptExecutorLCAug(): Promise<void> {
 	// If argv.length <= 3 || argv[3] === '-' then read from stdin
 	const filename = argv[3];
 
-	console.log('filename is:', filename);
+	// console.log('filename is:', filename);
 
 	const fileStream = createReadStream(filename);
 
@@ -30,63 +30,52 @@ export async function scriptExecutorLCAug(): Promise<void> {
 	// Note: we use the crlfDelay option to recognize all instances of CR LF
 	// ('\r\n') in input.txt as a single line break.
 
-	// let argvInjectionDone = false;
-
 	let expressionAsString = '';
 
 	for await (const line of rl) {
 		// Each line in input.txt will be successively available here as `line`.
-		console.log(`Line from file: ${line}`);
+		// console.log(`Line from file: ${line}`);
 
 		if (line.length === 0 || line.match(/^\s*$/) || line.match(/^\s*#/)) {
 			continue;
 			// } else if (line.match(/^+β([A-Z]+)/)) { // Specify a Beta-reduction strategy
 			// ...
 			// 	continue;
+			// }
 		}
-
-		// const match = line.match(/^:argc ([1-9][0-9]*)$/);
-
-		// if (!argvInjectionDone && match && match[1]) {
-		// 	const argc = parseInt(match[1], 10);
-		//
-		// 	for (let i = 0; i < argc; i++) {
-		// 		if (Number.isNaN(parseInt(argv[i + 3], 10))) {
-		// 			console.error(`Error! '${argv[i + 3]}' is not a number.`);
-		// 		}
-		//
-		// 		const generatedLine = `let argv${i} := ${argv[i + 3]}`;
-		//
-		// 		console.log(`Generated(${i}) : ${generatedLine}`);
-		//
-		// 		// (
-		// 		// 	parser.parse(tokenizer.tokenize(generatedLine)) as EcstaSKIExpression
-		// 		// ).evaluate(localEnvironment, globalInfo);
-		// 		processInput(generatedLine);
-		// 	}
-		//
-		// 	argvInjectionDone = true;
-		// 	continue;
-		// }
 
 		expressionAsString = expressionAsString + line + ' ';
 	}
+
+	console.log(`\nExpression as string: ${expressionAsString}\n`);
 
 	const ls = LanguageSelector.LambdaCalculusWithAugmentedSyntax;
 	const grammar = createGrammar(ls);
 	const tokenizer = createTokenizer(LexicalAnalyzerSelector.MidnightHack, ls);
 	const parser = createParser(ParserSelector.LL1, grammar);
-	const fb2 = getfb2(
-		tokenizer,
-		parser
-		// ,
-		// options: {
+	// const fb1 = getfb1(
+	// 	tokenizer,
+	// 	parser
+	// 	// ,
+	// 	// options: {
+	// 	// 	readonly strategy?: BetaReductionStrategy;
+	// 	// 	readonly generateNewVariableName?: () => string;
+	// 	// 	readonly maxDepth?: number;
+	// 	// } = {}
+	// );
+	const expr = parser.parse(tokenizer.tokenize(expressionAsString)) as ILCExpression;
+
+	console.log(`Parsed expression: ${expr}\n`);
+
+	// const result = fb2(expressionAsString);
+	const result = reduce(
+		expr
+		// , options: {
 		// 	readonly strategy?: BetaReductionStrategy;
 		// 	readonly generateNewVariableName?: () => string;
 		// 	readonly maxDepth?: number;
 		// } = {}
 	);
-	const result = fb2(expressionAsString);
 	const resultAsInteger = churchNumeralToInteger(result);
 	let resultAsString: string;
 
@@ -96,5 +85,5 @@ export async function scriptExecutorLCAug(): Promise<void> {
 		resultAsString = `${result}`;
 	}
 
-	console.log(`\nResult: ${resultAsString}\n`);
+	console.log(`Reduced expression: ${resultAsString}`);
 }

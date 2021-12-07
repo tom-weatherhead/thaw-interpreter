@@ -3,13 +3,15 @@ Programming language interpreters, including LISP, Scheme, and Prolog.
 
 Obligatory BadgeFest:
 
+[![apple][apple-badge-image]][apple-url]
+[![atom][atom-badge-image]][atom-url]
+[![circleci][circleci-badge-image]][circleci-url]
 [![codeclimate][codeclimate-badge-image]][codeclimate-url]
 [![git][git-badge-image]][git-url]
 [![github][github-badge-image]][github-url]
 [![npm][npm-badge-image]][npm-url]
 [![packagephobia][packagephobia-badge-image]][packagephobia-url]
 [![terminal][terminal-badge-image]][terminal-url]
-[![travis][travis-badge-image]][travis-url]
 [![typescript][typescript-badge-image]][typescript-url]
 
 [![status][status-badge-image]][status-url]
@@ -37,35 +39,80 @@ Obligatory BadgeFest:
 [![code style: prettier][prettier-badge-image]][prettier-url]
 [![license][license-badge-image]][license-url]
 
-## Features
+Much of the code in this library was based on or inspired by the book 'Programming Languages: An Interpreter-Based Approach', by Samuel N. Kamin, 1990, Addison Wesley, ISBN 0-201-06824-9.
 
-- Lots of Foo.
+## Building and Installing the App
 
-## Building
-
-Build the app via:
+Build and install the app via:
 
 ```console
 $ npm run all
+$ npm link
 ```
 
-## Launching the app
+## Launching the App
 
-Start an interpreter via e.g.:
+Start an interpreter via the command:
 
 ```console
-$ npm start lisp
-$ npm start scheme
-$ npm start prolog
+$ intrp [language-name]
 ```
 
-## Exiting the app
+... where [language-name] is one of:
 
-Exit an interpreter by typing 'exit'.
+- minimal
+- chapter1
+- lisp
+- apl
+- scheme
+- sasl
+- clu
+- smalltalk
+- prolog
+
+## Session Example
+
+```console
+$ intrp scheme
+
+This is the command line interface for thaw-interpreter
+
+Starting the read-evaluate-print loop:
+
+> (+ 2 3)
+5
+
+> exit
+Exiting...
+
+$
+```
+
+## The Script Runner
+
+The interpreter provides a limited facility for running scripts. Currently, it is capable of reducing Lambda calculus expressions.
+
+Example: Addition of two Church numerals using pure Lambda calculus:
+
+```console
+$ ./run-script.js lcaug examples/scripts/lambda-calculus-augmented-syntax/test1.lca 
+
+Expression as string: (+ 2 3) 
+
+Parsed expression: λf.λx.((λf.λx.(f (f (f x))) f) ((λf.λx.(f (f x)) f) x))
+
+Reduced expression: Integer 5
+```
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
 
+[apple-badge-image]: https://badgen.net/badge/icon/apple?icon=apple&label
+[apple-url]: https://www.apple.com
+[atom-badge-image]: https://badgen.net/badge/icon/atom?icon=atom&label
+[atom-url]: https://atom.io
+[circleci-badge-image]: https://badgen.net/badge/icon/circleci?icon=circleci&label
+[circleci-url]: https://circleci.com
 [codeclimate-badge-image]: https://badgen.net/badge/icon/codeclimate?icon=codeclimate&label
 [codeclimate-url]: https://codeclimate.com
 [git-badge-image]: https://badgen.net/badge/icon/git?icon=git&label
@@ -78,15 +125,13 @@ Exit an interpreter by typing 'exit'.
 [packagephobia-url]: https://packagephobia.com/
 [terminal-badge-image]: https://badgen.net/badge/icon/terminal?icon=terminal&label
 [terminal-url]: https://en.wikipedia.org/wiki/History_of_Unix
-[travis-badge-image]: https://badgen.net/badge/icon/travis?icon=travis&label
-[travis-url]: https://travis-ci.com
 [typescript-badge-image]: https://badgen.net/badge/icon/typescript?icon=typescript&label
 [typescript-url]: https://www.typescriptlang.org
 
 [status-badge-image]: https://badgen.net/github/status/tom-weatherhead/thaw-interpreter
 [status-url]: https://badgen.net/github/status/tom-weatherhead/thaw-interpreter
-[build-status-badge-image]: https://secure.travis-ci.org/tom-weatherhead/thaw-interpreter.svg
-[build-status-url]: https://travis-ci.org/tom-weatherhead/thaw-interpreter
+[build-status-badge-image]: https://circleci.com/gh/tom-weatherhead/thaw-interpreter.svg?style=shield
+[build-status-url]: https://circleci.com/gh/tom-weatherhead/thaw-interpreter
 [npm-version-badge-image]: https://img.shields.io/npm/v/thaw-interpreter.svg
 [npm-version-url]: https://www.npmjs.com/package/thaw-interpreter
 [latest-tag-badge-image]: https://badgen.net/github/tag/tom-weatherhead/thaw-interpreter

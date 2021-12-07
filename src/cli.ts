@@ -6,8 +6,6 @@ import { readEvaluatePrintLoop } from 'thaw-repl';
 
 import { createInterpreter } from './common/interpreter-factory';
 
-process.stdout.write('\nThis is the command line interface for thaw-interpreter\n\n');
-
 function printUsageMessage() {
 	process.stdout.write('\n');
 	process.stdout.write('Usage: $ intrp [language name]\n');
@@ -19,6 +17,8 @@ function printUsageMessage() {
 }
 
 export function driver(): void {
+	process.stdout.write('\nThis is the command line interface for thaw-interpreter\n\n');
+
 	if (process.argv.length < 3) {
 		process.stdout.write('Error: No language specified.\n');
 		printUsageMessage();
