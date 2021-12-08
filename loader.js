@@ -7,15 +7,17 @@ const process = require('process');
 const engine = require('.');
 
 if (process.argv.length <= 2) {
+	// TODO: Use process.stderr.write() ?
 	console.error('Usage: intrprtr language-name [script-path-list]');
 	process.exit(1);
 }
 
 const languageName = process.argv[2];
+const supportedLanguages = ['apl', 'chapter1', 'clu', 'lcaug', 'lisp', 'minimal', 'prolog', 'scheme', 'smalltalk'];
 
-if (['apl', 'chapter1', 'clu', 'lcaug', 'lisp', 'minimal', 'prolog', 'scheme', 'smalltalk'].indexOf(languageName) < 0) {
+if (supportedLanguages.indexOf(languageName) < 0) {
 	console.error(`Error: Unknown language name '${languageName}'.`);
-	console.error('The language name must be one of ...');
+	console.error('The language name must be one of:', supportedLanguages.join(', '));
 	process.exit(1);
 }
 

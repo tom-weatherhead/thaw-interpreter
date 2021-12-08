@@ -16,6 +16,41 @@ function printUsageMessage() {
 	process.stdout.write('\n');
 }
 
+export function languageNameStringToLanguageSelector(languageName: string): LanguageSelector {
+	switch (languageName) {
+		case 'minimal':
+			return LanguageSelector.MinimalLanguage;
+
+		case 'chapter1':
+			return LanguageSelector.Chapter1;
+
+		case 'lisp':
+			return LanguageSelector.LISP;
+
+		case 'apl':
+			return LanguageSelector.APL;
+
+		case 'scheme':
+			return LanguageSelector.Scheme;
+
+		case 'sasl':
+			return LanguageSelector.SASL;
+
+		case 'clu':
+			return LanguageSelector.CLU;
+
+		case 'smalltalk':
+			return LanguageSelector.Smalltalk;
+
+		case 'prolog':
+			// return LanguageSelector.Prolog; // Kamin's notation
+			return LanguageSelector.Prolog2; // Standard
+
+		default:
+			throw new Error('languageNameStringToLanguageSelector()');
+	}
+}
+
 export function driver(languageName: string): void {
 	process.stdout.write('\nThis is the command line interface for thaw-interpreter\n\n');
 
@@ -26,55 +61,14 @@ export function driver(languageName: string): void {
 	}
 
 	// const languageName = process.argv[2];
-	let languageSelector: LanguageSelector | undefined;
+	// let languageSelector: LanguageSelector | undefined;
+	const languageSelector = languageNameStringToLanguageSelector(languageName);
 
-	switch (languageName) {
-		case 'minimal':
-			languageSelector = LanguageSelector.MinimalLanguage;
-			break;
-
-		case 'chapter1':
-			languageSelector = LanguageSelector.Chapter1;
-			break;
-
-		case 'lisp':
-			languageSelector = LanguageSelector.LISP;
-			break;
-
-		case 'apl':
-			languageSelector = LanguageSelector.APL;
-			break;
-
-		case 'scheme':
-			languageSelector = LanguageSelector.Scheme;
-			break;
-
-		case 'sasl':
-			languageSelector = LanguageSelector.SASL;
-			break;
-
-		case 'clu':
-			languageSelector = LanguageSelector.CLU;
-			break;
-
-		case 'smalltalk':
-			languageSelector = LanguageSelector.Smalltalk;
-			break;
-
-		case 'prolog':
-			// languageSelector = LanguageSelector.Prolog; // Kamin's notation
-			languageSelector = LanguageSelector.Prolog2; // Standard
-			break;
-
-		default:
-			break;
-	}
-
-	if (languageSelector === undefined) {
-		process.stdout.write(`Error: No interpreter available for language '${languageName}'.\n`);
-		printUsageMessage();
-		return;
-	}
+	// if (languageSelector === undefined) {
+	// 	process.stdout.write(`Error: No interpreter available for language '${languageName}'.\n`);
+	// 	printUsageMessage();
+	// 	return;
+	// }
 
 	const interpreter = createInterpreter(languageSelector);
 

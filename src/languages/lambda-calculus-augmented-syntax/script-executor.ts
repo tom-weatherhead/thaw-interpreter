@@ -1,12 +1,11 @@
 // src/languages/lambda-calculus-augmented-syntax/script-executor.ts
 
-// Execute LCAug scripts via e.g. $ node run-script.js lcaug file.lca
+// Execute LCAug scripts via e.g. $ intrprtr lcaug file.lca
 
 import { createReadStream } from 'fs';
-// import { argv } from 'process';
 import { createInterface } from 'readline';
 
-import { LanguageSelector, LexicalAnalyzerSelector, ParserSelector } from 'thaw-interpreter-types';
+import { LanguageSelector } from 'thaw-interpreter-types';
 
 import { createTokenizer } from 'thaw-lexical-analyzer';
 
@@ -16,9 +15,6 @@ import { createParser } from 'thaw-parser';
 import { churchNumeralToInteger, createGrammar, ILCExpression, reduce } from 'thaw-grammar';
 
 export async function scriptExecutorLCAug(filename: string): Promise<void> {
-	// If argv.length <= 3 || argv[3] === '-' then read from stdin
-	// const filename = argv[3];
-
 	// console.log('filename is:', filename);
 
 	const fileStream = createReadStream(filename);
@@ -51,23 +47,12 @@ export async function scriptExecutorLCAug(filename: string): Promise<void> {
 
 	const ls = LanguageSelector.LambdaCalculusWithAugmentedSyntax;
 	const grammar = createGrammar(ls);
-	const tokenizer = createTokenizer(LexicalAnalyzerSelector.MidnightHack, ls);
-	const parser = createParser(ParserSelector.LL1, grammar);
-	// const fb1 = getfb1(
-	// 	tokenizer,
-	// 	parser
-	// 	// ,
-	// 	// options: {
-	// 	// 	readonly strategy?: BetaReductionStrategy;
-	// 	// 	readonly generateNewVariableName?: () => string;
-	// 	// 	readonly maxDepth?: number;
-	// 	// } = {}
-	// );
+	const tokenizer = createTokenizer(grammar.defaultLexicalAnalyzer, ls);
+	const parser = createParser(grammar.defaultParser, grammar);
 	const expr = parser.parse(tokenizer.tokenize(expressionAsString)) as ILCExpression;
 
 	console.log(`Parsed expression: ${expr}\n`);
 
-	// const result = fb2(expressionAsString);
 	const result = reduce(
 		expr
 		// , options: {

@@ -1,21 +1,15 @@
 // tom-weatherhead/thaw-interpreter/src/common/script-executor.ts
 
 import { createReadStream } from 'fs';
-// import { argv } from 'process';
 import { createInterface } from 'readline';
 
 import { LanguageSelector } from 'thaw-interpreter-types';
 
-import {
-	createGlobalInfo,
-	createGrammar /*,  IExpression, ISExpression, LISPGlobalInfo */
-} from 'thaw-grammar';
+import { createGlobalInfo, createGrammar } from 'thaw-grammar';
 
 import { createTokenizer } from 'thaw-lexical-analyzer';
 
 import { createParser /*, SyntaxException */ } from 'thaw-parser';
-
-// const ls = LanguageSelector.LISP;
 
 function numOccurrences(str: string, c: string): number {
 	return str.split('').filter((s) => s === c).length;
@@ -35,8 +29,6 @@ function createBracketMatcher(): (line: string) => boolean {
 	};
 }
 
-// export async function executeScript(ls: LanguageSelector, filename: string): Promise<void> {
-// TODO:
 export async function executeScript(ls: LanguageSelector, filenames: string[]): Promise<void> {
 	const grammar = createGrammar(ls);
 	const tokenizer = createTokenizer(grammar.defaultLexicalAnalyzer, ls);
@@ -49,7 +41,6 @@ export async function executeScript(ls: LanguageSelector, filenames: string[]): 
 	// 	}
 	// }
 
-	// TODO:
 	for (const filename of filenames) {
 		console.log('filename is:', filename);
 
@@ -97,7 +88,5 @@ export async function executeScript(ls: LanguageSelector, filenames: string[]): 
 		}
 
 		// If there are unmatched brackets at the EOF, throw an exception.
-
-		// TODO:
 	}
 }
