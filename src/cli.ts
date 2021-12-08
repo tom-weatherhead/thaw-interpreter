@@ -6,6 +6,10 @@ import { readEvaluatePrintLoop } from 'thaw-repl';
 
 import { createInterpreter } from './common/interpreter-factory';
 
+import { executeScript } from './common/script-executor';
+
+import { scriptExecutorLCAug } from './languages/lambda-calculus-augmented-syntax/script-executor';
+
 function printUsageMessage() {
 	process.stdout.write('\n');
 	process.stdout.write('Usage: $ intrprtr [language name]\n');
@@ -16,7 +20,7 @@ function printUsageMessage() {
 	process.stdout.write('\n');
 }
 
-export function languageNameStringToLanguageSelector(languageName: string): LanguageSelector {
+function languageNameStringToLanguageSelector(languageName: string): LanguageSelector {
 	switch (languageName) {
 		case 'minimal':
 			return LanguageSelector.MinimalLanguage;
@@ -51,7 +55,7 @@ export function languageNameStringToLanguageSelector(languageName: string): Lang
 	}
 }
 
-export function driver(languageName: string): void {
+function doInteractiveMode(languageName: string): void {
 	process.stdout.write('\nThis is the command line interface for thaw-interpreter\n\n');
 
 	if (process.argv.length < 3) {
@@ -60,8 +64,6 @@ export function driver(languageName: string): void {
 		return;
 	}
 
-	// const languageName = process.argv[2];
-	// let languageSelector: LanguageSelector | undefined;
 	const languageSelector = languageNameStringToLanguageSelector(languageName);
 
 	// if (languageSelector === undefined) {
@@ -82,4 +84,57 @@ export function driver(languageName: string): void {
 		.catch((error: unknown) => {
 			process.stderr.write(`Error in readEvaluatePrintLoop(): ${typeof error} ${error}\n`);
 		});
+}
+
+function runScript(languageName: string, scriptFilenames: string[]): void {
+	// let fnScriptExecutor: () => Promise<void>;
+	let scriptExecutionPromise: Promise<void>;
+
+	if (languageName === 'lcaug') {
+		scriptExecutionPromise = scriptExecutorLCAug(scriptFilenames[0]);
+	} else {
+		scriptExecutionPromise = executeScript(
+			languageNameStringToLanguageSelector(languageName),
+			scriptFilenames
+		);
+	}
+
+	scriptExecutionPromise.then().catch((error: unknown) => {
+		console.error('Script execution error:', typeof error, error);
+	});
+}
+
+export function driver(argv: string[]): void {
+	if (argv.length <= 2) {
+		// TODO: Use process.stderr.write() ?
+		console.error('Usage: intrprtr language-name [script-path-list]');
+		process.exit(1);
+	}
+
+	const languageName = argv[2];
+	const supportedLanguages = [
+		'apl',
+		'chapter1',
+		'clu',
+		'lcaug',
+		'lisp',
+		'minimal',
+		'prolog',
+		'scheme',
+		'smalltalk'
+	];
+
+	if (supportedLanguages.indexOf(languageName) < 0) {
+		console.error(`Error: Unknown language name '${languageName}'.`);
+		console.error('The language name must be one of:', supportedLanguages.join(', '));
+		process.exit(1);
+	}
+
+	if (argv.length === 3) {
+		// Interactive mode
+		doInteractiveMode(languageName);
+	} else {
+		// Script mode
+		runScript(languageName, argv.slice(3));
+	}
 }

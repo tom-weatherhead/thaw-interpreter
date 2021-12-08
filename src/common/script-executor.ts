@@ -29,6 +29,10 @@ function createBracketMatcher(): (line: string) => boolean {
 	};
 }
 
+function lineEndsWithDot(line: string): boolean {
+	return line.match(/\.$/) !== null;
+}
+
 export async function executeScript(ls: LanguageSelector, filenames: string[]): Promise<void> {
 	const grammar = createGrammar(ls);
 	const tokenizer = createTokenizer(grammar.defaultLexicalAnalyzer, ls);
@@ -53,7 +57,8 @@ export async function executeScript(ls: LanguageSelector, filenames: string[]): 
 		// Note: we use the crlfDelay option to recognize all instances of CR LF
 		// ('\r\n') in input.txt as a single line break.
 
-		const fnIsLineComplete = createBracketMatcher();
+		const fnIsLineComplete =
+			ls === LanguageSelector.Prolog2 ? lineEndsWithDot : createBracketMatcher();
 
 		let accumulatedLine = '';
 

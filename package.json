@@ -74,7 +74,7 @@
 	},
 	"publishConfig": {},
 	"dependencies": {
-		"thaw-grammar": "^0.0.7",
+		"thaw-grammar": "file:thaw-grammar.tgz",
 		"thaw-interpreter-core": "^0.0.3",
 		"thaw-lexical-analyzer": "^0.0.7",
 		"thaw-parser": "^0.0.7",
@@ -126,6 +126,7 @@
 		"Buddy Guy <deadbeef@decafbad.gov>",
 		"Deprecated <deadc0de@obso1337.org>",
 		"Loitering Munition <smart@bom.com>",
+		"Nemo <null@void.org>",
 		"Sgt. Pepper <shoot1st@thinkl8r.mil>"
 	],
 	"license": "MIT"
