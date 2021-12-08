@@ -35,9 +35,20 @@ function createBracketMatcher(): (line: string) => boolean {
 	};
 }
 
+// TODO: export async function executeScript(ls: LanguageSelector, filenames: string[]): Promise<void> { ... }
 export async function executeScript(ls: LanguageSelector, filename: string): Promise<void> {
-	// If argv.length <= 3 || argv[3] === '-' then read from stdin
-	// const filename = argv[3];
+	const grammar = createGrammar(ls);
+	const tokenizer = createTokenizer(grammar.defaultLexicalAnalyzer, ls);
+	const parser = createParser(grammar.defaultParser, grammar);
+	const globalInfo = createGlobalInfo(ls, { tokenizer, parser });
+
+	// if (typeof options.presets !== 'undefined') {
+	// 	for (const preset of options.presets) {
+	// 		globalInfo.loadPreset(preset);
+	// 	}
+	// }
+
+	// TODO: for (const filename of filenames) {
 
 	// console.log('filename is:', filename);
 
@@ -50,19 +61,7 @@ export async function executeScript(ls: LanguageSelector, filename: string): Pro
 	// Note: we use the crlfDelay option to recognize all instances of CR LF
 	// ('\r\n') in input.txt as a single line break.
 
-	const grammar = createGrammar(ls);
-	const tokenizer = createTokenizer(grammar.defaultLexicalAnalyzer, ls);
-	const parser = createParser(grammar.defaultParser, grammar);
-	// const globalInfo = new LISPGlobalInfo({ tokenizer, parser });
-	const globalInfo = createGlobalInfo(ls, { tokenizer, parser });
-
 	const fnIsLineComplete = createBracketMatcher();
-
-	// if (typeof options.presets !== 'undefined') {
-	// 	for (const preset of options.presets) {
-	// 		globalInfo.loadPreset(preset);
-	// 	}
-	// }
 
 	let accumulatedLine = '';
 
@@ -94,4 +93,8 @@ export async function executeScript(ls: LanguageSelector, filename: string): Pro
 			accumulatedLine = '';
 		}
 	}
+
+	// If there are unmatched brackets at the EOF, throw an exception.
+
+	// TODO: }
 }
