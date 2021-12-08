@@ -2,6 +2,8 @@
 
 import { argv } from 'process';
 
+import { executeScript } from './common/script-executor';
+
 import { scriptExecutorLCAug } from './languages/lambda-calculus-augmented-syntax/script-executor';
 
 export function runScript(): void {
@@ -11,6 +13,9 @@ export function runScript(): void {
 	switch (languageName) {
 		case 'lcaug':
 			fnScriptExecutor = scriptExecutorLCAug;
+			break;
+		case 'lisp':
+			fnScriptExecutor = executeScript;
 			break;
 		default:
 			console.error(`Script execution error: Unrecognized language '${languageName}'`);
