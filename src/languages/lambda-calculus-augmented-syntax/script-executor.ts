@@ -3,7 +3,7 @@
 // Execute LCAug scripts via e.g. $ node run-script.js lcaug file.lca
 
 import { createReadStream } from 'fs';
-import { argv } from 'process';
+// import { argv } from 'process';
 import { createInterface } from 'readline';
 
 import { LanguageSelector, LexicalAnalyzerSelector, ParserSelector } from 'thaw-interpreter-types';
@@ -15,9 +15,9 @@ import { createParser } from 'thaw-parser';
 // BetaReductionStrategy,
 import { churchNumeralToInteger, createGrammar, ILCExpression, reduce } from 'thaw-grammar';
 
-export async function scriptExecutorLCAug(): Promise<void> {
+export async function scriptExecutorLCAug(filename: string): Promise<void> {
 	// If argv.length <= 3 || argv[3] === '-' then read from stdin
-	const filename = argv[3];
+	// const filename = argv[3];
 
 	// console.log('filename is:', filename);
 

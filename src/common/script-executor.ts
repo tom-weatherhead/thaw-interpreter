@@ -1,12 +1,10 @@
 // tom-weatherhead/thaw-interpreter/src/common/script-executor.ts
 
 import { createReadStream } from 'fs';
-import { argv } from 'process';
+// import { argv } from 'process';
 import { createInterface } from 'readline';
 
 import { LanguageSelector } from 'thaw-interpreter-types';
-
-// import { createFnRecognizer, createInfrastructure } from '../../create-infrastructure';
 
 import {
 	createGlobalInfo,
@@ -17,7 +15,7 @@ import { createTokenizer } from 'thaw-lexical-analyzer';
 
 import { createParser /*, SyntaxException */ } from 'thaw-parser';
 
-const ls = LanguageSelector.LISP;
+// const ls = LanguageSelector.LISP;
 
 function numOccurrences(str: string, c: string): number {
 	return str.split('').filter((s) => s === c).length;
@@ -37,9 +35,9 @@ function createBracketMatcher(): (line: string) => boolean {
 	};
 }
 
-export async function executeScript(): Promise<void> {
+export async function executeScript(ls: LanguageSelector, filename: string): Promise<void> {
 	// If argv.length <= 3 || argv[3] === '-' then read from stdin
-	const filename = argv[3];
+	// const filename = argv[3];
 
 	// console.log('filename is:', filename);
 
@@ -58,9 +56,7 @@ export async function executeScript(): Promise<void> {
 	// const globalInfo = new LISPGlobalInfo({ tokenizer, parser });
 	const globalInfo = createGlobalInfo(ls, { tokenizer, parser });
 
-	const bracketMatcher = createBracketMatcher();
-
-	// globalInfo.loadPresets();
+	const fnIsLineComplete = createBracketMatcher();
 
 	// if (typeof options.presets !== 'undefined') {
 	// 	for (const preset of options.presets) {
@@ -80,7 +76,7 @@ export async function executeScript(): Promise<void> {
 
 		accumulatedLine = accumulatedLine + line + ' ';
 
-		if (bracketMatcher(line)) {
+		if (fnIsLineComplete(line)) {
 			console.log('Evaluating:', accumulatedLine);
 
 			globalInfo.clearPrintedText();
