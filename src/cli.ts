@@ -8,15 +8,15 @@ import { createInterpreter } from './common/interpreter-factory';
 
 function printUsageMessage() {
 	process.stdout.write('\n');
-	process.stdout.write('Usage: $ intrp [language name]\n');
+	process.stdout.write('Usage: $ intrprtr [language name]\n');
 	process.stdout.write('\n');
-	process.stdout.write('E.g.: $ intrp lisp\n');
+	process.stdout.write('E.g.: $ intrprtr lisp\n');
 	process.stdout.write('\n');
 	process.stdout.write('Available languages: minimal, chapter1, lisp, scheme, sasl, prolog');
 	process.stdout.write('\n');
 }
 
-export function driver(): void {
+export function driver(languageName: string): void {
 	process.stdout.write('\nThis is the command line interface for thaw-interpreter\n\n');
 
 	if (process.argv.length < 3) {
@@ -25,7 +25,7 @@ export function driver(): void {
 		return;
 	}
 
-	const languageName = process.argv[2];
+	// const languageName = process.argv[2];
 	let languageSelector: LanguageSelector | undefined;
 
 	switch (languageName) {

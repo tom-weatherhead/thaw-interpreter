@@ -29,7 +29,7 @@
 		"dist/types/**/*.d.ts"
 	],
 	"bin": {
-		"intrp": "./loader.js"
+		"intrprtr": "./loader.js"
 	},
 	"man": [],
 	"directories": {

@@ -35,8 +35,9 @@ function createBracketMatcher(): (line: string) => boolean {
 	};
 }
 
-// TODO: export async function executeScript(ls: LanguageSelector, filenames: string[]): Promise<void> { ... }
-export async function executeScript(ls: LanguageSelector, filename: string): Promise<void> {
+// export async function executeScript(ls: LanguageSelector, filename: string): Promise<void> {
+// TODO:
+export async function executeScript(ls: LanguageSelector, filenames: string[]): Promise<void> {
 	const grammar = createGrammar(ls);
 	const tokenizer = createTokenizer(grammar.defaultLexicalAnalyzer, ls);
 	const parser = createParser(grammar.defaultParser, grammar);
@@ -48,53 +49,55 @@ export async function executeScript(ls: LanguageSelector, filename: string): Pro
 	// 	}
 	// }
 
-	// TODO: for (const filename of filenames) {
+	// TODO:
+	for (const filename of filenames) {
+		console.log('filename is:', filename);
 
-	// console.log('filename is:', filename);
+		const fileStream = createReadStream(filename);
 
-	const fileStream = createReadStream(filename);
+		const rl = createInterface({
+			input: fileStream,
+			crlfDelay: Infinity
+		});
+		// Note: we use the crlfDelay option to recognize all instances of CR LF
+		// ('\r\n') in input.txt as a single line break.
 
-	const rl = createInterface({
-		input: fileStream,
-		crlfDelay: Infinity
-	});
-	// Note: we use the crlfDelay option to recognize all instances of CR LF
-	// ('\r\n') in input.txt as a single line break.
+		const fnIsLineComplete = createBracketMatcher();
 
-	const fnIsLineComplete = createBracketMatcher();
+		let accumulatedLine = '';
 
-	let accumulatedLine = '';
+		for await (const line of rl) {
+			// Each line in input.txt will be successively available here as `line`.
+			// console.log(`Line from file: ${line}`);
 
-	for await (const line of rl) {
-		// Each line in input.txt will be successively available here as `line`.
-		// console.log(`Line from file: ${line}`);
-
-		if (line.length === 0 || line.match(/^\s*$/) || line.match(/^\s*#/)) {
-			continue;
-		}
-
-		accumulatedLine = accumulatedLine + line + ' ';
-
-		if (fnIsLineComplete(line)) {
-			console.log('Evaluating:', accumulatedLine);
-
-			globalInfo.clearPrintedText();
-
-			let evaluationResultAsString = '';
-
-			try {
-				evaluationResultAsString = globalInfo.evaluateToString(accumulatedLine);
-			} catch (ex) {
-				evaluationResultAsString = `Exception: ${ex}`;
+			if (line.length === 0 || line.match(/^\s*$/) || line.match(/^\s*#/)) {
+				continue;
 			}
 
-			console.log('Result:', globalInfo.getPrintedText() + evaluationResultAsString);
+			accumulatedLine = accumulatedLine + line + ' ';
 
-			accumulatedLine = '';
+			if (fnIsLineComplete(line)) {
+				// console.log('Evaluating:', accumulatedLine);
+
+				globalInfo.clearPrintedText();
+
+				let evaluationResultAsString = '';
+
+				try {
+					evaluationResultAsString = globalInfo.evaluateToString(accumulatedLine);
+				} catch (ex) {
+					evaluationResultAsString = `Exception: ${ex}`;
+				}
+
+				// console.log('Result:', globalInfo.getPrintedText() + evaluationResultAsString);
+				console.log(globalInfo.getPrintedText() + evaluationResultAsString);
+
+				accumulatedLine = '';
+			}
 		}
+
+		// If there are unmatched brackets at the EOF, throw an exception.
+
+		// TODO:
 	}
-
-	// If there are unmatched brackets at the EOF, throw an exception.
-
-	// TODO: }
 }
