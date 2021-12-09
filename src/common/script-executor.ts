@@ -81,8 +81,10 @@ export async function executeScript(ls: LanguageSelector, filenames: string[]): 
 
 				try {
 					evaluationResultAsString = globalInfo.evaluateToString(accumulatedLine);
-				} catch (ex) {
-					evaluationResultAsString = `Exception: ${ex}`;
+				} catch (error) {
+					console.error('executeScript() error:', typeof error, error);
+					console.error('Code:', accumulatedLine);
+					evaluationResultAsString = `Exception: ${error}`;
 				}
 
 				// console.log('Result:', globalInfo.getPrintedText() + evaluationResultAsString);
