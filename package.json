@@ -1,6 +1,6 @@
 {
 	"name": "thaw-interpreter",
-	"version": "0.0.7",
+	"version": "0.0.6",
 	"description": "Programming language interpreters, including LISP, Scheme, and Prolog.",
 	"keywords": [
 		"APL",
@@ -82,7 +82,7 @@
 		"thaw-interpreter-core": "^0.0.5",
 		"thaw-lexical-analyzer": "^0.0.9",
 		"thaw-parser": "^0.0.9",
-		"thaw-repl": "file:thaw-repl.tgz"
+		"thaw-repl": "^0.0.3"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.17.5",
